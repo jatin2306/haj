@@ -1,0 +1,212 @@
+﻿export const CONTACT = {
+  addressLines: ['Clifton', 'Bedfordshire'],
+  office: '01582 616064',
+  mobile: '07838 648097',
+  whatsapp: '07838 648097',
+  email: 'info@awaytomakkah.com',
+};
+
+export const PACKAGES = [
+  {
+    id: '4-star-june-2026',
+    title: '4 Star June Umrah Package 2026',
+    tier: '4★',
+    dates: '17 June – 30 June',
+    madinah: '5 nights in 4* Shaza Regency Madinah',
+    makkah: '5 nights in 4* Emaar Grand Makkah',
+    includes: [
+      'Guided ziyarah tours in Makkah',
+      'Guided ziyarah tours in Madinah',
+      'E-waiver visa (British passport)',
+      'Full ground transport',
+    ],
+    prices: { quad: 555, triple: 655, twin: 755 },
+    deposit: 250,
+    breakfast: true,
+    kids: 'Kids under 6yrs stay free with parents inc bb',
+    flightsNote:
+      'Flights are not included with this package. Please call our agents for flights',
+    earlyBird: null,
+  },
+  {
+    id: '5-star-june-2026',
+    title: '5 Star June Umrah Package 2026',
+    tier: '5★',
+    dates: '17 June – 30 June',
+    madinah: '5 nights in 5* Jaydan Madinah',
+    makkah: '5 nights in 5* Hilton Convention Makkah',
+    includes: [
+      'Guided ziyarah tours in Makkah',
+      'Guided ziyarah tours in Madinah',
+      'E-waiver visa (British passport)',
+      'Full ground transport',
+    ],
+    prices: { quad: 695, triple: 795, twin: 895 },
+    deposit: 250,
+    breakfast: true,
+    kids: 'Kids under 6yrs stay free with parents inc bb',
+    flightsNote:
+      'Flights are not included with this package. Please call our agents for flights',
+    earlyBird: null,
+  },
+  {
+    id: '5-star-summer-2026',
+    title: '5 Star Summer Holidays Umrah Package',
+    tier: '5★',
+    dates: '05 August – 15 August',
+    madinah: '4 nights in 5* Worth Peninsula Madinah',
+    makkah: '5 nights in 5* Address Hotel Makkah',
+    includes: [
+      'Flights with Qatar Airways (35 kg luggage allowance)',
+      'Jummah in Makkah & Madinah',
+      'Guided ziyarah tours in Makkah',
+      'Guided ziyarah tours in Madinah',
+      'E-waiver visa (British passport)',
+      'Full ground transport',
+      'Taif guided day tour',
+      'Badr guided day tour',
+    ],
+    prices: { quad: 1399, triple: 1499, twin: 1599 },
+    deposit: 250,
+    breakfast: true,
+    kids: 'Kids under 6yrs stay free with parents inc bb',
+    flightsNote: null,
+    earlyBird: '10% early bird discount if booked before 01 June',
+  },
+  {
+    id: '4-star-sept-2026',
+    title: '4 Star September Umrah Package 2026',
+    tier: '4★',
+    dates: '05 September – 30 September',
+    madinah: '5 nights in 4* Emaar Royal Madinah',
+    makkah: '5 nights in 4* Emaar Grand Makkah',
+    includes: [
+      'Guided ziyarah tours in Makkah',
+      'Guided ziyarah tours in Madinah',
+      'E-waiver visa (British passport)',
+      'Full ground transport',
+    ],
+    prices: { quad: 595, triple: 695, twin: 795 },
+    deposit: 250,
+    breakfast: true,
+    kids: 'Kids under 6yrs stay free with parents inc bb',
+    flightsNote:
+      'Flights are not included with this package. Please call our agents for flights',
+    earlyBird: null,
+  },
+  {
+    id: '5-star-oct-2026',
+    title: '5 Star October Holidays Umrah Package',
+    tier: '5★',
+    dates: '17 October – 03 November',
+    madinah: '5 nights in 5* Worth Peninsula Madinah',
+    makkah: '5 nights in 5* Address Hotel Makkah',
+    includes: [
+      'Guided ziyarah tours in Makkah',
+      'Guided ziyarah tours in Madinah',
+      'E-waiver visa (British passport)',
+      'Full ground transport',
+    ],
+    prices: { quad: 799, triple: 899, twin: 999 },
+    deposit: 250,
+    breakfast: true,
+    kids: 'Kids under 6yrs stay free with parents inc bb',
+    flightsNote:
+      'Flights are not included with this package. Please call our agents for flights',
+    earlyBird: '10% early bird discount if booked before 01 June',
+  },
+  {
+    id: '5-star-dec-2026',
+    title: '5 Star December Holidays Umrah Package',
+    tier: '5★',
+    dates: '18 December – 03 January 2027',
+    madinah: '5 nights in 5* Emaar Royal Madinah',
+    makkah: '5 nights in 5* Marriott Hotel Makkah',
+    includes: [
+      'Guided ziyarah tours in Makkah',
+      'Guided ziyarah tours in Madinah',
+      'E-waiver visa (British passport)',
+      'Full ground transport',
+    ],
+    prices: { quad: 799, triple: 920, twin: 1120 },
+    deposit: 250,
+    breakfast: true,
+    kids: 'Kids under 6yrs stay free with parents inc bb',
+    flightsNote:
+      'Flights are not included with this package. Please call our agents for flights',
+    earlyBird: '10% early bird discount if booked before 01 June',
+  },
+  {
+    id: '4-star-jan-2027',
+    title: '4 Star January Umrah Package 2027',
+    tier: '4★',
+    dates: '12 January – 30 January',
+    madinah: '5 nights in 4* Shaza Regency Madinah',
+    makkah: '5 nights in 4* Emaar Grand Makkah',
+    includes: [
+      'Guided ziyarah tours in Makkah',
+      'Guided ziyarah tours in Madinah',
+      'E-waiver visa (British passport)',
+      'Full ground transport',
+    ],
+    prices: { quad: 695, triple: 795, twin: 895 },
+    deposit: 250,
+    breakfast: true,
+    kids: 'Kids under 6yrs stay free with parents inc bb',
+    flightsNote:
+      'Flights are not included with this package. Please call our agents for flights',
+    earlyBird: null,
+  },
+  {
+    id: '5-star-jan-2027',
+    title: '5 Star January Umrah Package 2027',
+    tier: '5★',
+    dates: '12 January – 30 January',
+    madinah: '5 nights in 5* Jaydan Madinah',
+    makkah: '5 nights in 5* Hilton Convention Makkah',
+    includes: [
+      'Guided ziyarah tours in Makkah',
+      'Guided ziyarah tours in Madinah',
+      'E-waiver visa (British passport)',
+      'Full ground transport',
+    ],
+    prices: { quad: 795, triple: 895, twin: 995 },
+    deposit: 250,
+    breakfast: true,
+    kids: 'Kids under 6yrs stay free with parents inc bb',
+    flightsNote:
+      'Flights are not included with this package. Please call our agents for flights',
+    earlyBird: null,
+  },
+];
+
+export const BLOG_POSTS = [
+  {
+    title: 'Umrah Entry Exit Dates 2026 | When Does Umrah Close For Hajj 2026',
+    excerpt:
+      'The last entry date for pilgrims to offer their Umrah 2026 in Saudi Arabia is expected to be 3rd April 2026, with the last day of Umrah visa issuance 20th March 2026. Saudi authorities have declared that all pilgrims are required to depart by 18 April 2026, after which Makkah prepares for Hajj 2026.',
+  },
+  {
+    title: 'Umrah 2026 Essentials Dates that You Need to Know',
+    excerpt:
+      'Final entry deadline: 3 April 2026 (15 Shawwal 1447). Mandatory departure: 18 April 2026 (1 Dhu al-Qadah 1447). UK nationals or tourist visa holders are recommended to depart from Makkah by 13 April 2026.',
+  },
+  {
+    title: 'How to Plan a Stress-Free Umrah Journey in 2026/27',
+    excerpt:
+      'Careful planning helps with visa processing, itinerary management, and accommodations near revered sites. Evaluate your budget, research package inclusions, compare itineraries, and consult advisors to finalize a choice that balances value and spiritual focus.',
+  },
+  {
+    title: 'Masjid Quba — First Mosque in Islam',
+    excerpt:
+      'The first mosque built by the Prophet Muhammad (peace be upon him) after the Hijrah from Makkah to Madinah. Visiting Quba is a common Sunnah for those visiting Madinah; the Prophet (peace be upon him) said that prayer there brings a reward like that of an Umrah.',
+  },
+];
+
+export const WHY_CHOOSE = [
+  'Over 15 years of trusted experience',
+  'Personalised Umrah packages',
+  'Local guides in Makkah & Madinah',
+  'Dedicated customer support',
+  'A service built on trust, care, and sincerity',
+];
