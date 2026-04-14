@@ -1,4 +1,4 @@
-﻿import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.png';
 
 function Header() {
   return (
@@ -17,14 +17,15 @@ function Header() {
         <nav className="navLinks" aria-label="Primary">
           <a href="#about">About</a>
           <a href="#services">Services</a>
+          <a href="#hotels">Hotels</a>
           <a href="#packages">Packages</a>
           <a href="#blog">Blog</a>
           <a href="#contact">Contact</a>
         </nav>
 
         <div className="navCtas">
-          <a className="btn btnGhost" href="#packages">
-            View packages
+          <a className="btn btnGhost" href="#hotels">
+            View hotels
           </a>
           <a className="btn btnPrimary" href="#contact">
             Contact us

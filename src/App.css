@@ -20,6 +20,11 @@
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .tt {
   color: var(--text);
   background: radial-gradient(1000px 620px at 12% -8%, rgba(202, 164, 75, 0.16), transparent 54%),
@@ -122,6 +127,8 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .btn {
@@ -391,6 +398,52 @@
   line-height: 1.65;
   font-size: 14.5px;
   max-width: 62ch;
+}
+
+.aboutSection {
+  padding-top: 72px;
+}
+.splitCopy {
+  display: grid;
+  gap: 14px;
+}
+.aboutLead {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(15, 23, 42, 0.8);
+}
+.aboutCopyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.aboutText {
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 16px;
+  padding: 14px;
+  max-width: none;
+}
+.aboutHighlights {
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.aboutHighlights li {
+  border-radius: 14px;
+  border: 1px solid rgba(202, 164, 75, 0.25);
+  background: rgba(202, 164, 75, 0.1);
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 750;
+  color: rgba(15, 23, 42, 0.88);
+  line-height: 1.5;
+}
+.aboutMediaCard {
+  max-width: 450px;
 }
 
 .sectionHead {
@@ -930,8 +983,49 @@
 
 .packageGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 14px;
+}
+
+.hotelGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.hotelCard {
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.1);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.hotelCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.15);
+}
+.hotelImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+.hotelBody {
+  padding: 12px 14px 14px;
+}
+.hotelPrice {
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(15, 23, 42, 0.6);
+}
+.hotelName {
+  margin: 8px 0 0;
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 900;
+  letter-spacing: -0.02em;
 }
 .packageCard {
   border-radius: 22px;
@@ -1109,8 +1203,18 @@
 }
 
 @media (max-width: 980px) {
+  .container {
+    width: min(var(--max), calc(100% - 24px));
+  }
   .navLinks {
     display: none;
+  }
+  .navCtas .btnGhost {
+    display: none;
+  }
+  .navCtas .btn {
+    padding: 10px 12px;
+    font-size: 13px;
   }
   .heroGrid,
   .split,
@@ -1132,6 +1236,25 @@
   .blogGrid,
   .contactGrid {
     grid-template-columns: 1fr;
+  }
+  .footerCols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .footerBottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .aboutCopyGrid,
+  .aboutHighlights {
+    grid-template-columns: 1fr;
+  }
+  .packageGrid,
+  .hotelGrid {
+    grid-template-columns: 1fr;
+  }
+  .heroActions .btn {
+    flex: 1;
+    min-width: 180px;
   }
   .priceGrid {
     grid-template-columns: 1fr;
@@ -1156,6 +1279,25 @@
   }
   .brandLogoFooter {
     height: 40px;
+  }
+  .section {
+    padding: 48px 0;
+  }
+  .h2 {
+    font-size: clamp(20px, 7vw, 28px);
+  }
+  .heroLead,
+  .muted {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .heroActions .btn,
+  .ctaActions a {
+    width: 100%;
+    min-width: 0;
+  }
+  .footerCols {
+    grid-template-columns: 1fr;
   }
   .miniFormRow {
     grid-template-columns: 1fr;

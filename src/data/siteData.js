@@ -1,4 +1,4 @@
-﻿export const CONTACT = {
+export const CONTACT = {
   addressLines: ['Clifton', 'Bedfordshire'],
   office: '01582 616064',
   mobile: '07838 648097',
@@ -201,6 +201,25 @@ export const BLOG_POSTS = [
     excerpt:
       'The first mosque built by the Prophet Muhammad (peace be upon him) after the Hijrah from Makkah to Madinah. Visiting Quba is a common Sunnah for those visiting Madinah; the Prophet (peace be upon him) said that prayer there brings a reward like that of an Umrah.',
   },
+];
+
+export const HOTELS = [
+  { id: '1', name: 'Al Marwa Rayhaan Rotana', priceText: 'From £189.99', image: '1.jpg' },
+  { id: '2', name: 'Swissotel Makkah', priceText: 'Starting from £155.00 per night', image: '2.jpg' },
+  { id: '3', name: 'Swissotel Al Maqam', priceText: 'Starting from £153.00 per night', image: '3.jpg' },
+  { id: '4', name: 'Marriott Jabal Omar', priceText: 'Starting from £139.00 per night', image: '4.jpg' },
+  { id: '5', name: 'Hilton Double Tree', priceText: 'Starting from £116.00 per night', image: '5.jpg' },
+  { id: '6', name: 'Hilton Convention', priceText: 'Starting from £132.00 per night', image: '6.jpg' },
+  { id: '7', name: 'Hilton Suites Makkah', priceText: 'Starting from £189.99 per night', image: '7.jpg' },
+  { id: '8', name: 'Conrad Jabal Omar', priceText: 'Starting from £189.99 per night', image: '8.jpg' },
+  { id: '9', name: 'Movenpick Hajar Tower', priceText: 'Starting from £165.00', image: '9.jpg' },
+  { id: '10', name: 'Address Jabal Omar Makkah', priceText: 'From £175.99', image: '10.jpg' },
+  { id: '11', name: 'Jumeirah Jabal Omar Makkah', priceText: 'From £175.99', image: '11.jpg' },
+  { id: '12', name: 'Taiba Front Madinah', priceText: 'Starting from £115.00 per night', image: '12.jpg' },
+  { id: '13', name: 'Anwar Al Movenpick', priceText: 'Starting from £135.00 per night', image: '13.jpg' },
+  { id: '14', name: 'Emaar Royal Madinah', priceText: 'Starting from £99.00 per night', image: '14.jpg' },
+  { id: '15', name: 'Elaf Taqwa Madinah', priceText: 'Starting from £115.00 per night', image: '15.jpg' },
+  { id: '16', name: 'Private VIP Transport', priceText: 'Starting from £5.00', image: '16.jpg' },
 ];
 
 export const WHY_CHOOSE = [

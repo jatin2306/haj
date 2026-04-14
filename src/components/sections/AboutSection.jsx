@@ -1,46 +1,40 @@
 function AboutSection() {
+  const highlights = [
+    'Over 15 years of trusted Umrah experience',
+    'Tailored packages for families, groups, and individuals',
+    'Dedicated local guides in Makkah and Madinah',
+    'Visa, hotels, flights, and ground transport support',
+  ];
+
   return (
-    <section className="section" id="about" aria-label="About us">
+    <section className="section aboutSection" id="about" aria-label="About us">
       <div className="container split">
         <div className="splitCopy">
           <div className="kicker">About us</div>
           <h2 className="h2">A Way to Makkah Umrah Services</h2>
-          <p className="muted">
-            At A Way to Makkah Umrah Services, we are dedicated to helping
-            Muslims fulfil their sacred journey to Makkah and Madinah with ease,
-            comfort, and peace of mind.
+          <p className="muted aboutLead">
+            We help pilgrims complete their sacred journey with confidence, comfort, and peace of
+            mind through trusted guidance at every step.
           </p>
-          <p className="muted">
-            With over 15 years of experience, we specialise in providing
-            personalised Hajj and Umrah packages tailored to meet the unique
-            needs of each pilgrim. Whether you are travelling alone, with
-            family, or in a group, we ensure your journey is smooth,
-            well-organised, and spiritually enriching.
-          </p>
-          <p className="muted">
-            We take pride in offering dedicated local guides in Makkah and
-            Madinah, who are there to support you throughout your stay. From
-            guidance on rituals to on-the-ground assistance, our team ensures
-            you feel confident, informed, and cared for at every step.
-          </p>
-          <p className="muted">
-            Our packages also include guided tours to visit historical sites and
-            significant locations in Makkah and Madinah, allowing you to deepen
-            your understanding of Islamic history while enhancing your spiritual
-            experience.
-          </p>
-          <p className="muted">
-            Our services include visa assistance, flight bookings, carefully
-            selected hotel accommodations close to the Haram, and reliable
-            ground transportation. Every detail is managed with professionalism
-            so you can focus entirely on your worship.
-          </p>
-          <p className="muted">
-            What sets us apart is our commitment to sincerity, trust, and
-            customer care. We strive to build lasting relationships with our
-            clients by delivering a service that is transparent, reliable, and
-            centred around your spiritual needs.
-          </p>
+
+          <div className="aboutCopyGrid">
+            <p className="muted aboutText">
+              From your first enquiry to your return home, our team manages your journey with care.
+              We provide clear communication, practical support, and reliable service so you can stay
+              focused on worship.
+            </p>
+            <p className="muted aboutText">
+              Our packages include carefully selected hotels, visa assistance, guided ziyarah, and
+              dependable transport in Makkah and Madinah to make your trip smooth and spiritually
+              enriching.
+            </p>
+          </div>
+
+          <ul className="aboutHighlights">
+            {highlights.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
 
           <div className="vmvGrid">
             <div className="vmv">
@@ -70,24 +64,34 @@ function AboutSection() {
         </div>
 
         <div className="splitMedia" aria-hidden="true">
-          <div className="mediaCard">
+          <div className="mediaCard aboutMediaCard">
             <div className="mediaTop">
               <div className="mediaChip">Your journey</div>
               <div className="mediaChip soft">Trusted care</div>
             </div>
-            <div className="mediaTitle">Your journey to Makkah begins with us.</div>
+            <div className="mediaTitle">A caring team for your spiritual journey.</div>
             <div className="mediaText">
-              Dedicated support, clear communication, and guidance so you can
-              travel with confidence.
+              We combine personal support with practical planning to make your Umrah experience calm,
+              organized, and meaningful.
             </div>
             <div className="mediaBottom">
               <div className="mediaMetric">
-                <div className="mediaMetricValue">Visa</div>
-                <div className="mediaMetricLabel">Assistance</div>
+                <div className="mediaMetricValue">15+ Years</div>
+                <div className="mediaMetricLabel">Experience</div>
               </div>
               <div className="mediaMetric">
-                <div className="mediaMetricValue">Ground</div>
-                <div className="mediaMetricLabel">Transport</div>
+                <div className="mediaMetricValue">24/7</div>
+                <div className="mediaMetricLabel">Support</div>
+              </div>
+            </div>
+            <div className="mediaBottom">
+              <div className="mediaMetric">
+                <div className="mediaMetricValue">Hotels</div>
+                <div className="mediaMetricLabel">Near Haram</div>
+              </div>
+              <div className="mediaMetric">
+                <div className="mediaMetricValue">Guided</div>
+                <div className="mediaMetricLabel">Ziyarah</div>
               </div>
             </div>
           </div>

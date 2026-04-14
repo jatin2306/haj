@@ -1,4 +1,21 @@
 function PackagesSection({ packages }) {
+  const flightsLineBreakText = 'Please call our agents for flights';
+
+  const renderFlightsNote = (note) => {
+    if (!note.includes(flightsLineBreakText)) {
+      return note;
+    }
+
+    const [firstLine] = note.split(flightsLineBreakText);
+    return (
+      <>
+        {firstLine.trimEnd()}
+        <br />
+        {flightsLineBreakText}
+      </>
+    );
+  };
+
   return (
     <section className="section alt" id="packages" aria-label="Umrah packages">
       <div className="container">
@@ -61,7 +78,7 @@ function PackagesSection({ packages }) {
                 <div>{p.kids}</div>
                 {p.earlyBird ? <div className="earlyBird">{p.earlyBird}</div> : null}
                 {p.flightsNote ? (
-                  <div className="packageNote">{p.flightsNote}</div>
+                  <div className="packageNote">{renderFlightsNote(p.flightsNote)}</div>
                 ) : null}
               </div>
             </article>
