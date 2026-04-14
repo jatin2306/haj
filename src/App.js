@@ -27,7 +27,6 @@ function App() {
           <HeroSection contact={CONTACT} />
           <ServicesSection whyChoose={WHY_CHOOSE} />
           <AboutSection />
-          <HotelsSection hotels={HOTELS} />
           <PackagesSection packages={PACKAGES} />
           <BlogSection posts={BLOG_POSTS} />
           <ContactSection
@@ -36,6 +35,7 @@ function App() {
             telOffice={telOffice}
             telMobile={telMobile}
           />
+          <HotelsSection hotels={HOTELS} />
         </main>
 
         <Footer contact={CONTACT} telOffice={telOffice} />
