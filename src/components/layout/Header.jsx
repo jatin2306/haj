@@ -17,6 +17,7 @@ function Header() {
         <nav className="navLinks" aria-label="Primary">
           <a href="/#about">About</a>
           <a href="/#services">Services</a>
+
           <a href="/#testimonials">Testimonials</a>
           <a href="/#packages">Packages</a>
           <a href="/gallery">Gallery</a>
@@ -24,7 +25,7 @@ function Header() {
         </nav>
 
         <div className="navCtas">
-          <a className="btn btnGhost" href="/#hotels">
+          <a className="btn btnGhost" href="/hotels">
             View hotels
           </a>
           <a className="btn btnPrimary" href="/#contact">

@@ -26,7 +26,6 @@ function HomePage({ waHref, telOffice, telMobile }) {
         telOffice={telOffice}
         telMobile={telMobile}
       />
-      <HotelsSection hotels={HOTELS} />
       <TestimonialsSection testimonials={TESTIMONIALS} />
     </main>
   );
@@ -40,12 +39,21 @@ function GalleryPage() {
   );
 }
 
+function HotelsPage() {
+  return (
+    <main id="content">
+      <HotelsSection hotels={HOTELS} />
+    </main>
+  );
+}
+
 function App() {
   const waHref = `https://wa.me/44${CONTACT.whatsapp.replace(/\s/g, '').slice(1)}`;
   const telOffice = `tel:+44${CONTACT.office.replace(/\s/g, '').slice(1)}`;
   const telMobile = `tel:+44${CONTACT.mobile.replace(/\s/g, '').slice(1)}`;
   const pathname = window.location.pathname.toLowerCase();
   const isGalleryPage = pathname === '/gallery' || pathname === '/gallery/';
+  const isHotelsPage = pathname === '/hotels' || pathname === '/hotels/';
 
   return (
     <>
@@ -57,6 +65,8 @@ function App() {
       <div className="tt">
         {isGalleryPage ? (
           <GalleryPage />
+        ) : isHotelsPage ? (
+          <HotelsPage />
         ) : (
           <HomePage waHref={waHref} telOffice={telOffice} telMobile={telMobile} />
         )}

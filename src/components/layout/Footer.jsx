@@ -25,7 +25,7 @@ function Footer({ contact, telOffice }) {
             <div className="footerTitle">Explore</div>
             <a href="/#about">About</a>
             <a href="/#services">Services</a>
-            <a href="/#hotels">Hotels</a>
+            <a href="/hotels">Hotels</a>
             <a href="/#packages">Packages</a>
             <a href="/gallery">Gallery</a>
             <a href="/#blog">Blog</a>
