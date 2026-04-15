@@ -16,6 +16,10 @@
   --accent-3: #e2c172;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -411,6 +415,9 @@ img {
 
 .section {
   padding: 62px 0;
+}
+.section[id] {
+  scroll-margin-top: 92px;
 }
 .section.alt {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
