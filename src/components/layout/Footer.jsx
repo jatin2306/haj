@@ -23,15 +23,16 @@ function Footer({ contact, telOffice }) {
         <div className="footerCols">
           <div className="footerCol">
             <div className="footerTitle">Explore</div>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#hotels">Hotels</a>
-            <a href="#packages">Packages</a>
-            <a href="#blog">Blog</a>
+            <a href="/#about">About</a>
+            <a href="/#services">Services</a>
+            <a href="/#hotels">Hotels</a>
+            <a href="/#packages">Packages</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/#blog">Blog</a>
           </div>
           <div className="footerCol">
             <div className="footerTitle">Contact</div>
-            <a href="#contact">Get in touch</a>
+            <a href="/#contact">Get in touch</a>
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <a href={telOffice}>Office {contact.office}</a>
           </div>
@@ -44,7 +45,7 @@ function Footer({ contact, telOffice }) {
       <div className="container footerBottom">
         <div>© {new Date().getFullYear()} A Way to Makkah Umrah Services. All rights reserved.</div>
         <div className="footerBottomLinks">
-          <a href="#contact">Contact</a>
+          <a href="/#contact">Contact</a>
         </div>
       </div>
     </footer>

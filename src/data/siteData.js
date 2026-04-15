@@ -8,6 +8,30 @@ export const CONTACT = {
 
 export const PACKAGES = [
   {
+    id: 'ramadhan-2027',
+    title: 'Ramadhan 2027 Umrah Package',
+    tier: '5★',
+    dates: '10 February 2026 - 20 February 2026',
+    madinah: '5 nights in 4* Grand Plaza Al Badr Madinah',
+    makkah: '5 nights in 5* Al Shohada Hotel Makkah',
+    includes: [
+      'Flights with Qatar Airways (35 kg luggage allowance)',
+      'Jummah in Makkah & Madinah',
+      'Guided ziyarah tours in Makkah',
+      'Guided ziyarah tours in Madinah',
+      'E-waiver visa (British passport)',
+      'Full ground transport',
+      'Haramain train Madinah to Makkah',
+    ],
+    prices: { quad: 1499, triple: 1599, twin: 1699 },
+    deposit: 250,
+    breakfast: false,
+    mealNote: 'Sohoor included',
+    kids: 'Kids under 6yrs stay free with parents inc bb',
+    flightsNote: null,
+    earlyBird: null,
+  },
+  {
     id: '4-star-june-2026',
     title: '4 Star June Umrah Package 2026',
     tier: '4★',
@@ -113,7 +137,7 @@ export const PACKAGES = [
     kids: 'Kids under 6yrs stay free with parents inc bb',
     flightsNote:
       'Flights are not included with this package. Please call our agents for flights',
-    earlyBird: '10% early bird discount if booked before 01 June',
+    earlyBird: null,
   },
   {
     id: '5-star-dec-2026',
@@ -134,7 +158,7 @@ export const PACKAGES = [
     kids: 'Kids under 6yrs stay free with parents inc bb',
     flightsNote:
       'Flights are not included with this package. Please call our agents for flights',
-    earlyBird: '10% early bird discount if booked before 01 June',
+    earlyBird: null,
   },
   {
     id: '4-star-jan-2027',
@@ -228,4 +252,28 @@ export const WHY_CHOOSE = [
   'Local guides in Makkah & Madinah',
   'Dedicated customer support',
   'A service built on trust, care, and sincerity',
+];
+
+export const TESTIMONIALS = [
+  {
+    id: 't1',
+    name: 'Tabir',
+    quote:
+      'The best Umrah experience - 10/10 for service and special thanks to Fahad. Everything was smooth and well managed.',
+    rating: 5,
+  },
+  {
+    id: 't2',
+    name: 'Mohammed Moiz Nehal',
+    quote:
+      'Fahad was always approachable and provided good support and service. The overall price was very reasonable.',
+    rating: 5,
+  },
+  {
+    id: 't3',
+    name: 'Mustaryr Shah',
+    quote:
+      'Abdul Rehman has gone above and beyond to make our trip a great experience. Great service and professionalism.',
+    rating: 5,
+  },
 ];

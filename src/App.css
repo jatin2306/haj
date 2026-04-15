@@ -182,15 +182,18 @@ img {
 
 .hero {
   position: relative;
-  padding: 70px 0 38px;
+  min-height: calc(100vh - 74px);
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
 }
 .heroBg {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: saturate(0.98) contrast(1.05);
-  opacity: 0.22;
+  filter: saturate(1.02) contrast(1.04);
+  opacity: 0.95;
   pointer-events: none;
 }
 .heroGrid {
@@ -199,6 +202,13 @@ img {
   grid-template-columns: 1.25fr 0.9fr;
   gap: 26px;
   align-items: start;
+  padding: 22px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.12));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
 }
 
 .pill {
@@ -226,6 +236,7 @@ img {
   font-size: clamp(28px, 3.5vw, 44px);
   line-height: 1.1;
   letter-spacing: -0.04em;
+  text-wrap: balance;
 }
 .heroLead {
   margin: 0;
@@ -266,7 +277,7 @@ img {
 .heroCard {
   border-radius: var(--radius-lg);
   border: 1px solid rgba(15, 23, 42, 0.12);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.84));
   box-shadow: var(--shadow-soft);
   padding: 18px;
 }
@@ -983,8 +994,14 @@ img {
 
 .packageGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+.packageGrid > .packageCard:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  width: min(100%, calc((100% - 16px) / 2));
+  justify-self: center;
 }
 
 .hotelGrid {
@@ -1027,15 +1044,46 @@ img {
   font-weight: 900;
   letter-spacing: -0.02em;
 }
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.galleryCard {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+.galleryImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
 .packageCard {
   border-radius: 22px;
   border: 1px solid rgba(15, 23, 42, 0.1);
   background: rgba(255, 255, 255, 0.86);
-  padding: 16px;
   box-shadow: 0 18px 44px rgba(15, 23, 42, 0.1);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  min-height: 520px;
+  overflow: hidden;
+}
+.packageCardContent {
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+.packageCardMedia {
+  border-left: 1px solid rgba(15, 23, 42, 0.1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .packageCardHead {
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
@@ -1127,6 +1175,61 @@ img {
 .earlyBird {
   color: rgba(17, 90, 50, 0.95);
   font-weight: 850;
+}
+
+.testimonialsSection {
+  background: linear-gradient(180deg, rgba(220, 232, 255, 0.5), rgba(244, 247, 255, 0.75));
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+.testimonialsHead {
+  justify-content: center;
+  text-align: center;
+}
+.testimonialsHead .muted {
+  margin: 0 auto;
+}
+.testimonialGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.testimonialCard {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 40px;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+  padding: 20px 18px 18px;
+}
+.testimonialCard::after {
+  content: '';
+  position: absolute;
+  left: 34px;
+  bottom: -12px;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-right: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  transform: rotate(45deg);
+}
+.testimonialName {
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  color: rgba(15, 23, 42, 0.94);
+}
+.testimonialStars {
+  margin-top: 4px;
+  color: #e99c2f;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+.testimonialQuote {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 .blogGrid {
@@ -1223,7 +1326,22 @@ img {
     grid-template-columns: 1fr;
   }
   .hero {
-    padding-top: 46px;
+    min-height: auto;
+    padding: 16px 0 22px;
+  }
+  .heroGrid {
+    gap: 14px;
+    padding: 14px;
+    border-radius: 18px;
+  }
+  .heroCard {
+    padding: 14px;
+  }
+  .checkList {
+    gap: 8px;
+  }
+  .checkList li {
+    font-size: 13px;
   }
   .heroTitle {
     font-size: clamp(24px, 7vw, 34px);
@@ -1233,6 +1351,7 @@ img {
     grid-template-columns: 1fr;
   }
   .whyGrid,
+  .testimonialGrid,
   .blogGrid,
   .contactGrid {
     grid-template-columns: 1fr;
@@ -1252,6 +1371,20 @@ img {
   .hotelGrid {
     grid-template-columns: 1fr;
   }
+  .packageGrid > .packageCard:last-child:nth-child(odd) {
+    grid-column: auto;
+    width: 100%;
+    justify-self: stretch;
+  }
+  .packageCard {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .packageCardMedia {
+    min-height: 220px;
+    border-left: 0;
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+  }
   .heroActions .btn {
     flex: 1;
     min-width: 180px;
@@ -1260,10 +1393,22 @@ img {
     grid-template-columns: 1fr;
   }
   .heroStats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .splitMedia {
     min-height: 360px;
+  }
+}
+
+@media (max-width: 760px) {
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .heroActions .btn {
+    width: 100%;
+    min-width: 0;
+    flex: none;
   }
 }
 
@@ -1290,6 +1435,44 @@ img {
   .muted {
     font-size: 14px;
     line-height: 1.6;
+  }
+  .hero {
+    min-height: auto;
+    padding: 12px 0 18px;
+  }
+  .heroGrid {
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .pill {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+  .heroTitle {
+    font-size: clamp(22px, 8vw, 30px);
+    line-height: 1.15;
+  }
+  .heroStats {
+    grid-template-columns: 1fr;
+  }
+  .packageCardContent {
+    padding: 12px;
+  }
+  .packageCardMedia {
+    min-height: 180px;
+  }
+  .priceCell {
+    padding: 9px;
+  }
+  .testimonialCard {
+    border-radius: 24px;
+    padding: 16px 14px;
+  }
+  .testimonialCard::after {
+    width: 16px;
+    height: 16px;
+    bottom: -9px;
+    left: 24px;
   }
   .heroActions .btn,
   .ctaActions a {

@@ -1,10 +1,10 @@
-import logo from '../../assets/logo.png';
+import logo from "../../assets/logo.png";
 
 function Header() {
   return (
     <header className="nav">
       <div className="container navInner">
-        <div className="brand">
+        <a className="brand" href="/">
           <img
             className="brandLogo"
             src={logo}
@@ -12,22 +12,22 @@ function Header() {
             loading="eager"
             decoding="async"
           />
-        </div>
+        </a>
 
         <nav className="navLinks" aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#hotels">Hotels</a>
-          <a href="#packages">Packages</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
+          <a href="/#about">About</a>
+          <a href="/#services">Services</a>
+          <a href="/#testimonials">Testimonials</a>
+          <a href="/#packages">Packages</a>
+          <a href="/gallery">Gallery</a>
+          <a href="/#blog">Blog</a>
         </nav>
 
         <div className="navCtas">
-          <a className="btn btnGhost" href="#hotels">
+          <a className="btn btnGhost" href="/#hotels">
             View hotels
           </a>
-          <a className="btn btnPrimary" href="#contact">
+          <a className="btn btnPrimary" href="/#contact">
             Contact us
           </a>
         </div>

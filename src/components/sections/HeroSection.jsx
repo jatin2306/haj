@@ -1,4 +1,4 @@
-import heroBg from '../../assets/hero-bg.jpeg';
+import heroBg from '../../assets/home.jpeg';
 
 function HeroSection({ contact }) {
   return (
@@ -6,7 +6,7 @@ function HeroSection({ contact }) {
       <div
         className="heroBg"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(247, 248, 252, 0.25), rgba(247, 248, 252, 0.98)), url(${heroBg})`,
+          backgroundImage: `linear-gradient(180deg, rgba(11, 15, 23, 0.34), rgba(11, 15, 23, 0.5)), url(${heroBg})`,
         }}
         aria-hidden="true"
       />
@@ -16,12 +16,16 @@ function HeroSection({ contact }) {
             <span className="dot" aria-hidden="true" />
             Over 15 years serving pilgrims
           </div>
-          <h1 className="heroTitle">Your Journey to Makkah Starts Here</h1>
+          <h1 className="heroTitle">
+            Your Journey to Makkah&nbsp;!
+            <br />
+            Starts Here
+          </h1>
           <p className="heroLead">
             At A Way to Makkah, we combine experience, care, and excellence to
             deliver a truly seamless Umrah journey. From the moment you book
-            with us, every detail is handled - so you can focus on your worship
-            and spiritual connection.
+            with us, every detail is taken care of, so you can focus fully on
+            your worship and spiritual connection.
           </p>
 
           <div className="heroActions">
