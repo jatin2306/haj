@@ -15,10 +15,12 @@ function BlogSection({ posts }) {
         </div>
         <div className="blogGrid">
           {posts.map((post) => (
-            <article key={post.title} className="blogCard">
-              <h3 className="blogTitle">{post.title}</h3>
-              <p className="blogExcerpt">{post.excerpt}</p>
-            </article>
+            <a key={post.slug} className="blogCard" href={`/blog/${post.slug}`}>
+              <article>
+                <h3 className="blogTitle">{post.title}</h3>
+                <p className="blogExcerpt">{post.excerpt}</p>
+              </article>
+            </a>
           ))}
         </div>
       </div>
