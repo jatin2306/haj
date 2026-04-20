@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Layout, Menu, Button, theme, ConfigProvider } from 'antd';
-import { DashboardOutlined, LogoutOutlined, HomeOutlined } from '@ant-design/icons';
+import { BookOutlined, LogoutOutlined, HomeOutlined } from '@ant-design/icons';
 import { adminLogout } from './auth';
 
 const { Header, Sider, Content } = Layout;
@@ -35,17 +35,13 @@ export default function AdminShell() {
             items={[
               {
                 key: '/admin',
-                icon: <DashboardOutlined />,
-                label: <Link to="/admin">Dashboard</Link>,
+                icon: <BookOutlined />,
+                label: <Link to="/admin">Blog posts</Link>,
               },
               {
                 key: 'site',
                 icon: <HomeOutlined />,
-                label: (
-                  <a href="/" target="_blank" rel="noreferrer">
-                    View site
-                  </a>
-                ),
+                label: <Link to="/">View site</Link>,
               },
             ]}
           />
@@ -65,7 +61,7 @@ export default function AdminShell() {
               borderBottom: '1px solid rgba(0,0,0,0.06)',
             }}
           >
-            <strong>Dashboard</strong>
+            <strong>Blog admin</strong>
           </Header>
           <Content style={{ margin: 24, minHeight: 280 }}>
             <Outlet />

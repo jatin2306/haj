@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function ServicesSection({ whyChoose }) {
   return (
     <section className="section alt" id="services" aria-label="Services">
@@ -30,9 +32,9 @@ function ServicesSection({ whyChoose }) {
               Let A Way to Makkah take care of the details, so you can focus on
               what truly matters. Your journey. Your worship. Your peace.
             </p>
-            <a className="btn btnPrimary" href="#packages" style={{ marginTop: 14 }}>
+            <Link className="btn btnPrimary" to="/#packages" style={{ marginTop: 14 }}>
               Explore packages
-            </a>
+            </Link>
           </div>
         </div>
       </div>

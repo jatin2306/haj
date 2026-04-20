@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
 function Footer({ contact, telOffice }) {
@@ -23,16 +24,16 @@ function Footer({ contact, telOffice }) {
         <div className="footerCols">
           <div className="footerCol">
             <div className="footerTitle">Explore</div>
-            <a href="/#about">About</a>
-            <a href="/#services">Services</a>
-            <a href="/hotels">Hotels</a>
-            <a href="/#packages">Packages</a>
-            <a href="/gallery">Gallery</a>
-            <a href="/#blog">Blog</a>
+            <Link to="/#about">About</Link>
+            <Link to="/#services">Services</Link>
+            <Link to="/hotels">Hotels</Link>
+            <Link to="/#packages">Packages</Link>
+            <Link to="/gallery">Gallery</Link>
+            <Link to="/#blog">Blog</Link>
           </div>
           <div className="footerCol">
             <div className="footerTitle">Contact</div>
-            <a href="/#contact">Get in touch</a>
+            <Link to="/#contact">Get in touch</Link>
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <a href={telOffice}>Office {contact.office}</a>
           </div>
@@ -45,7 +46,7 @@ function Footer({ contact, telOffice }) {
       <div className="container footerBottom">
         <div>© {new Date().getFullYear()} A Way to Makkah Umrah Services. All rights reserved.</div>
         <div className="footerBottomLinks">
-          <a href="/#contact">Contact</a>
+          <Link to="/#contact">Contact</Link>
         </div>
       </div>
     </footer>

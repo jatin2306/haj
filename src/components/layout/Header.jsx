@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
 const NAV_LINKS = [
-  { href: '/#about', label: 'About' },
-  { href: '/#services', label: 'Services' },
-  { href: '/#testimonials', label: 'Testimonials' },
-  { href: '/#packages', label: 'Packages' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/#blog', label: 'Blog' },
+  { to: '/#about', label: 'About' },
+  { to: '/#services', label: 'Services' },
+  { to: '/#testimonials', label: 'Testimonials' },
+  { to: '/#packages', label: 'Packages' },
+  { to: '/gallery', label: 'Gallery' },
+  { to: '/#blog', label: 'Blog' },
 ];
 
 function Header() {
@@ -40,7 +41,7 @@ function Header() {
     <>
       <header className="nav">
         <div className="container navInner">
-          <a className="brand" href="/" onClick={closeMenu}>
+          <Link className="brand" to="/" onClick={closeMenu}>
             <img
               className="brandLogo"
               src={logo}
@@ -48,23 +49,23 @@ function Header() {
               loading="eager"
               decoding="async"
             />
-          </a>
+          </Link>
 
           <nav className="navLinks" aria-label="Primary">
-            {NAV_LINKS.map(({ href, label }) => (
-              <a key={href} href={href}>
+            {NAV_LINKS.map(({ to, label }) => (
+              <Link key={to} to={to}>
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           <div className="navCtas">
-            <a className="btn btnGhost" href="/hotels">
+            <Link className="btn btnGhost" to="/hotels">
               View hotels
-            </a>
-            <a className="btn btnPrimary" href="/#contact">
+            </Link>
+            <Link className="btn btnPrimary" to="/#contact">
               Contact us
-            </a>
+            </Link>
           </div>
 
           <button
@@ -114,19 +115,19 @@ function Header() {
             </button>
           </div>
           <div className="navMobileLinks">
-            {NAV_LINKS.map(({ href, label }) => (
-              <a key={href} href={href} onClick={closeMenu}>
+            {NAV_LINKS.map(({ to, label }) => (
+              <Link key={to} to={to} onClick={closeMenu}>
                 {label}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="navMobileCtas">
-            <a className="btn btnGhost btnFull" href="/hotels" onClick={closeMenu}>
+            <Link className="btn btnGhost btnFull" to="/hotels" onClick={closeMenu}>
               View hotels
-            </a>
-            <a className="btn btnPrimary btnFull" href="/#contact" onClick={closeMenu}>
+            </Link>
+            <Link className="btn btnPrimary btnFull" to="/#contact" onClick={closeMenu}>
               Contact us
-            </a>
+            </Link>
           </div>
         </nav>
       </div>

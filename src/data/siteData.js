@@ -225,63 +225,6 @@ export const PACKAGES = [
   },
 ];
 
-export const BLOG_POSTS = [
-  {
-    slug: 'umrah-entry-exit-dates-2026',
-    title: 'Umrah Entry Exit Dates 2026 | When Does Umrah Close For Hajj 2026',
-    excerpt:
-      'The last entry date for pilgrims to offer their Umrah 2026 in Saudi Arabia is expected to be 3rd April 2026, with the last day of Umrah visa issuance 20th March 2026. Saudi authorities have declared that all pilgrims are required to depart by 18 April 2026, after which Makkah prepares for Hajj 2026.',
-    body: [
-      'Saudi Arabia sets clear windows for Umrah so the holy cities can transition smoothly into Hajj season. For 2026, planning around the published entry, visa, and exit dates helps you avoid last-minute stress and travel disruption.',
-      'The last entry date for pilgrims intending to perform Umrah in 2026 is expected to be 3 April 2026. Umrah visa issuance is expected to end around 20 March 2026, so applications and supporting documents should be completed well before that point.',
-      'Authorities have indicated that all pilgrims should depart by 18 April 2026, when Makkah begins preparing for Hajj 2026. Airlines, hotels, and ground transport are typically very busy in this period — confirm every leg of your journey with your agent and official sources.',
-      'Rules and dates can change. Always double-check the latest guidance from Saudi authorities and speak with our team before you book flights or finalize leave from work.',
-    ],
-  },
-  {
-    slug: 'umrah-2026-essential-dates',
-    title: 'Umrah 2026 Essentials Dates that You Need to Know',
-    excerpt:
-      'Final entry deadline: 3 April 2026 (15 Shawwal 1447). Mandatory departure: 18 April 2026 (1 Dhu al-Qadah 1447). UK nationals or tourist visa holders are recommended to depart from Makkah by 13 April 2026.',
-    body: [
-      'Keeping a short list of critical dates makes it easier to align visas, flights, and hotel stays. Below are the key milestones many travellers use when planning Umrah in 2026.',
-      'Final entry deadline: 3 April 2026 (15 Shawwal 1447). If you arrive too close to this date, you risk being unable to enter for Umrah before the season pauses for Hajj preparations.',
-      'Mandatory departure: 18 April 2026 (1 Dhu al-Qadah 1447). Plan your return tickets and transport so you are clear of Makkah in good time — do not rely on last-seat availability during peak movement.',
-      'UK nationals or those travelling on arrangements similar to tourist visas are often advised to depart from Makkah by 13 April 2026 to allow a comfortable buffer. Your situation may differ; we can help you interpret the rules that apply to your nationality and visa type.',
-    ],
-  },
-  {
-    slug: 'stress-free-umrah-2026-27',
-    title: 'How to Plan a Stress-Free Umrah Journey in 2026/27',
-    excerpt:
-      'Careful planning helps with visa processing, itinerary management, and accommodations near revered sites. Evaluate your budget, research package inclusions, compare itineraries, and consult advisors to finalize a choice that balances value and spiritual focus.',
-    body: [
-      'Umrah is spiritually rewarding, but logistics — visas, luggage, hotels, and transport — deserve calm, early attention. Starting several months ahead usually gives the best choice of flights and rooms near the Haram.',
-      'Define a realistic budget that includes visas, insurance, ziyarah, meals, and a small contingency. Compare packages not only on price but on what is included: hotel distance, breakfast, transfers, and guided support in Makkah and Madinah.',
-      'Work with advisors you trust. Ask questions until you understand your day-by-day itinerary, especially if you are travelling with elders or children. Clarity before departure prevents confusion on the ground.',
-      'Build in rest after long flights, keep copies of important documents, and stay in touch with your coordinator if plans need to change. A balanced plan protects both your peace of mind and your focus in the holy cities.',
-    ],
-  },
-  {
-    slug: 'masjid-quba-first-mosque',
-    title: 'Masjid Quba — First Mosque in Islam',
-    excerpt:
-      'The first mosque built by the Prophet Muhammad (peace be upon him) after the Hijrah from Makkah to Madinah. Visiting Quba is a common Sunnah for those visiting Madinah; the Prophet (peace be upon him) said that prayer there brings a reward like that of an Umrah.',
-    body: [
-      'Masjid Quba, on the outskirts of Madinah, holds a special place in Islamic history as the first mosque established by the Prophet Muhammad (peace be upon him) after the Hijrah from Makkah.',
-      'Many pilgrims walk or ride from central Madinah to offer two rakʿahs here. It is a quiet, reflective visit away from the busiest parts of the city, and a meaningful addition to a Madinah stay.',
-      'The Prophet (peace be upon him) encouraged prayer in this mosque and spoke of its great reward. Whether you visit once or on each trip into Madinah, allow enough time to arrive calmly, perform wudu, and pray without rushing.',
-      'Dress modestly, carry water in warm months, and follow local guidance on transport and prayer times. Our team can suggest how to fit Quba into your ziyarah schedule alongside other sites in Madinah.',
-    ],
-  },
-];
-
-export function getBlogPostBySlug(slug) {
-  if (!slug) return null;
-  const key = String(slug).toLowerCase().replace(/\/$/, '');
-  return BLOG_POSTS.find((p) => p.slug === key) || null;
-}
-
 export const HOTELS = [
   { id: '1', name: 'Al Marwa Rayhaan Rotana', priceText: 'From £189.99', image: '1.jpg' },
   { id: '2', name: 'Swissotel Makkah', priceText: 'Starting from £155.00 per night', image: '2.jpg' },

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import heroBg from '../../assets/home.jpeg';
 
 function HeroSection({ contact }) {
@@ -29,12 +30,12 @@ function HeroSection({ contact }) {
           </p>
 
           <div className="heroActions">
-            <a className="btn btnPrimary" href="#packages">
+            <Link className="btn btnPrimary" to="/#packages">
               View Umrah packages
-            </a>
-            <a className="btn btnSoft" href="#about">
+            </Link>
+            <Link className="btn btnSoft" to="/#about">
               About us
-            </a>
+            </Link>
           </div>
 
           <div className="heroStats" role="list" aria-label="Highlights">
@@ -107,9 +108,9 @@ function HeroSection({ contact }) {
             <p className="miniFormNote" style={{ marginBottom: 12 }}>
               Office {contact.office} · Mobile {contact.mobile}
             </p>
-            <a className="btn btnPrimary btnFull" href="#contact">
+            <Link className="btn btnPrimary btnFull" to="/#contact">
               Contact details
-            </a>
+            </Link>
             <div className="miniFormNote">{contact.email}</div>
           </div>
         </div>

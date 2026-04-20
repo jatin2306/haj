@@ -1,0 +1,364 @@
+/* Full-width Hajj promo section (matches flyer-style layout; not a narrow sidebar column). */
+.hajjExperienceSection {
+  padding: 0;
+  scroll-margin-top: calc(var(--nav-h) + 18px);
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.hajjExperienceShell {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .hajjExperienceShell {
+    border-radius: 20px;
+    margin-block: 48px;
+  }
+
+  .hajjExperienceSection {
+    padding-inline: clamp(12px, 3vw, 28px);
+    background: linear-gradient(180deg, rgba(202, 164, 75, 0.12), transparent 40%);
+  }
+}
+
+.hajjExperienceHero {
+  position: relative;
+  padding: clamp(28px, 5vw, 48px) clamp(16px, 4vw, 40px) clamp(22px, 4vw, 36px);
+  background: linear-gradient(165deg, #c9a24e 0%, #a67c32 42%, #8a6228 100%);
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hajjExperiencePattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 18px,
+      rgba(255, 255, 255, 0.06) 18px,
+      rgba(255, 255, 255, 0.06) 19px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 18px,
+      rgba(255, 255, 255, 0.06) 18px,
+      rgba(255, 255, 255, 0.06) 19px
+    ),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 2px, transparent 2px 14px);
+  pointer-events: none;
+}
+
+.hajjExperienceHeroInner {
+  position: relative;
+  z-index: 1;
+}
+
+.hajjExperienceKicker {
+  margin: 0 0 8px;
+  font-size: clamp(11px, 1.8vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hajjExperienceTitle {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: clamp(32px, 7vw, 56px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.2);
+}
+
+.hajjExperienceYear {
+  margin: 12px 0 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: clamp(18px, 3.2vw, 26px);
+  font-weight: 700;
+  color: #f0d78a;
+  letter-spacing: 0.06em;
+}
+
+.hajjExperienceDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px clamp(16px, 4vw, 32px);
+  background: linear-gradient(180deg, #faf6ef 0%, #f3e9d6 100%);
+}
+
+.hajjExperienceDividerLine {
+  flex: 1;
+  max-width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b8893a, transparent);
+  border-radius: 2px;
+}
+
+.hajjExperienceDividerText {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #6b4e1e;
+  white-space: nowrap;
+}
+
+.hajjExperienceMain {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(18px, 3vw, 28px);
+  padding: clamp(20px, 4vw, 36px) clamp(16px, 4vw, 36px) clamp(8px, 2vw, 16px);
+  background: linear-gradient(180deg, #faf6ef 0%, #fff 55%);
+}
+
+@media (min-width: 768px) {
+  .hajjExperienceMain {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+  }
+}
+
+.hajjExperiencePackages {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hajjPackageCard {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(74, 54, 20, 0.12);
+}
+
+.hajjPackageCardHead {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(90deg, #d4af5a 0%, #a67c32 50%, #8f6a28 100%);
+}
+
+.hajjPackageCardBody {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid rgba(139, 106, 40, 0.2);
+  border-top: none;
+}
+
+.hajjPackageBasis {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4a3a24;
+}
+
+.hajjPackagePrice {
+  font-size: clamp(26px, 4.5vw, 34px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #2c2418;
+  line-height: 1;
+}
+
+.hajjPackageAsterisk {
+  font-size: 0.55em;
+  font-weight: 700;
+  vertical-align: super;
+}
+
+.hajjRegistration {
+  margin: 8px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5c4a32;
+  line-height: 1.4;
+}
+
+.hajjRegistrationIcon {
+  flex-shrink: 0;
+  color: #7a5c2e;
+  display: grid;
+  place-items: center;
+}
+
+.hajjNotice {
+  position: relative;
+  align-self: stretch;
+  min-height: 140px;
+}
+
+.hajjNoticePanel {
+  background: linear-gradient(180deg, #4a2f1a 0%, #2d1a0f 100%);
+  border-radius: 16px;
+  padding: clamp(16px, 3vw, 22px) clamp(16px, 3vw, 22px) clamp(36px, 5vw, 48px);
+  min-height: 100%;
+  box-shadow: 0 16px 40px rgba(45, 26, 15, 0.35);
+}
+
+.hajjNoticeText {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(15px, 2.2vw, 17px);
+  line-height: 1.65;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.hajjPassportBadge {
+  position: absolute;
+  right: -6px;
+  bottom: -18px;
+  width: min(120px, 38vw);
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.35));
+}
+
+.hajjPassportSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hajjPhotoStrip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: clamp(140px, 28vw, 280px);
+}
+
+.hajjPhotoStripCell {
+  position: relative;
+  overflow: hidden;
+}
+
+.hajjPhotoStripCell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: clamp(140px, 28vw, 280px);
+}
+
+.hajjPhotoStripCell--left img {
+  object-position: center 40%;
+}
+
+.hajjPhotoStripCell--right img {
+  object-position: center center;
+}
+
+.hajjExperienceFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px clamp(16px, 4vw, 28px);
+  background: #fff;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+@media (min-width: 640px) {
+  .hajjExperienceFooter {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.hajjFooterPhone {
+  font-size: 15px;
+  color: #2c2418;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hajjFooterPhone:hover {
+  color: #8a6228;
+}
+
+.hajjFooterPhone strong {
+  font-weight: 900;
+}
+
+.hajjFooterBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hajjFooterLogo {
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.hajjFooterBrandText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding-inline: 20px;
+}
+
+.hajjFooterBrandText::before,
+.hajjFooterBrandText::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 1px;
+  background: #c9a24e;
+  opacity: 0.7;
+}
+
+.hajjFooterBrandText::before {
+  left: 0;
+}
+
+.hajjFooterBrandText::after {
+  right: 0;
+}
+
+.hajjFooterBrandName {
+  font-size: clamp(16px, 2.4vw, 20px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #b8893a;
+  line-height: 1.1;
+}
+
+.hajjFooterBrandTag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(44, 36, 24, 0.75);
+  margin-top: 2px;
+}
