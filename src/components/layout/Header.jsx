@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
-const NAV_LINKS = [
+const HOME_NAV_LINKS = [
+  { to: '/hajj-package-2027', label: 'Hajj Package 2027' },
   { to: '/#about', label: 'About' },
-  { to: '/#services', label: 'Services' },
-  { to: '/#testimonials', label: 'Testimonials' },
   { to: '/#packages', label: 'Packages' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/#blog', label: 'Blog' },
@@ -13,6 +12,16 @@ const NAV_LINKS = [
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
+  const navLinks = isHome
+    ? HOME_NAV_LINKS
+    : [
+        { to: '/', label: 'Home' },
+        { to: '/hajj-package-2027', label: 'Hajj Package 2027' },
+        { to: '/gallery', label: 'Gallery' },
+        { to: '/#contact', label: 'Contact' },
+      ];
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
@@ -52,7 +61,7 @@ function Header() {
           </Link>
 
           <nav className="navLinks" aria-label="Primary">
-            {NAV_LINKS.map(({ to, label }) => (
+            {navLinks.map(({ to, label }) => (
               <Link key={to} to={to}>
                 {label}
               </Link>
@@ -115,7 +124,7 @@ function Header() {
             </button>
           </div>
           <div className="navMobileLinks">
-            {NAV_LINKS.map(({ to, label }) => (
+            {navLinks.map(({ to, label }) => (
               <Link key={to} to={to} onClick={closeMenu}>
                 {label}
               </Link>

@@ -19,6 +19,7 @@ import AdminShell from './admin/AdminShell';
 import AdminBlogsPage from './admin/AdminBlogsPage';
 import RequireAdmin from './admin/RequireAdmin';
 import NotFoundPage from './pages/NotFoundPage';
+import HajjPackage2027Page from './pages/HajjPackage2027Page';
 import { CONTACT, PACKAGES, HOTELS, WHY_CHOOSE, TESTIMONIALS } from './data/siteData';
 
 function HomePage() {
@@ -83,6 +84,7 @@ function AppRoutes() {
         <Route index element={<HomePage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="hotels" element={<HotelsPage />} />
+        <Route path="hajj-package-2027" element={<HajjPackage2027Page />} />
         <Route path="blog/:slug" element={<BlogPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

@@ -10,6 +10,11 @@ import packageBg9 from '../../assets/Lutonumrahtours photos/9.jpg';
 
 function PackagesSection({ packages }) {
   const flightsLineBreakText = 'Please call our agents for flights';
+  const priceRows = [
+    { key: 'quad', label: 'Quad sharing' },
+    { key: 'triple', label: 'Triple sharing' },
+    { key: 'twin', label: 'Twin sharing' },
+  ];
   const packageBackgrounds = [
     packageBg1,
     packageBg2,
@@ -82,20 +87,19 @@ function PackagesSection({ packages }) {
                   ))}
                 </ul>
                 <div className="priceGrid" aria-label="Prices per person">
-                  <div className="priceCell">
-                    <div className="priceLabel">Quad sharing</div>
-                    <div className="priceValue">£{p.prices.quad.toFixed(2)}</div>
-                  </div>
-                  <div className="priceCell">
-                    <div className="priceLabel">Triple sharing</div>
-                    <div className="priceValue">
-                      £{p.prices.triple.toFixed(2)}
-                    </div>
-                  </div>
-                  <div className="priceCell">
-                    <div className="priceLabel">Twin sharing</div>
-                    <div className="priceValue">£{p.prices.twin.toFixed(2)}</div>
-                  </div>
+                  {priceRows.map(({ key, label }) => {
+                    const value = p.prices?.[key];
+                    if (typeof value !== 'number') {
+                      return null;
+                    }
+
+                    return (
+                      <div className="priceCell" key={key}>
+                        <div className="priceLabel">{label}</div>
+                        <div className="priceValue">£{value.toFixed(2)}</div>
+                      </div>
+                    );
+                  })}
                 </div>
                 <div className="packageFoot">
                   <div>£{p.deposit.toFixed(2)} deposit with payment plan</div>
