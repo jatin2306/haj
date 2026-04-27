@@ -9,6 +9,7 @@ import HotelsSection from './components/sections/HotelsSection';
 import PackagesSection from './components/sections/PackagesSection';
 // import HajjExperienceSection from './components/sections/HajjExperienceSection';
 import BlogSection from './components/sections/BlogSection';
+import BlogListingPage from './components/sections/BlogListingPage';
 import BlogPostById from './components/sections/BlogPostById';
 import BlogNotFound from './components/sections/BlogNotFound';
 import ContactSection from './components/sections/ContactSection';
@@ -85,6 +86,7 @@ function AppRoutes() {
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="hotels" element={<HotelsPage />} />
         <Route path="hajj-package-2027" element={<HajjPackage2027Page />} />
+        <Route path="blog" element={<BlogListingPage />} />
         <Route path="blog/:slug" element={<BlogPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

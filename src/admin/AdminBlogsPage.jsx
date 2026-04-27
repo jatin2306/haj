@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   Button,
   DatePicker,
-  Drawer,
   Input,
   InputNumber,
   Modal,
@@ -43,7 +42,7 @@ const initialGallerySlot = () => ({ file: null, image_url: '', display_order: 0 
 export default function AdminBlogsPage() {
   const [rows, setRows] = useState([]);
   const [listLoading, setListLoading] = useState(true);
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
   const [editId, setEditId] = useState(null);
   const [loadOneLoading, setLoadOneLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -102,7 +101,7 @@ export default function AdminBlogsPage() {
   const openCreate = () => {
     resetForm();
     setLoadOneLoading(false);
-    setDrawerOpen(true);
+    setFormOpen(true);
   };
 
   const fillFormFromBlog = (blog) => {
@@ -137,29 +136,29 @@ export default function AdminBlogsPage() {
   };
 
   const openEdit = async (id) => {
-    setDrawerOpen(true);
+    setFormOpen(true);
     setEditId(id);
     setLoadOneLoading(true);
     try {
       const blog = await fetchAdminBlogById(id);
       if (!blog) {
         message.error('Blog not found');
-        setDrawerOpen(false);
+        setFormOpen(false);
         return;
       }
       fillFormFromBlog(blog);
     } catch (e) {
       message.error(e?.message || 'Failed to load blog');
-      setDrawerOpen(false);
+      setFormOpen(false);
     } finally {
       setLoadOneLoading(false);
     }
   };
 
-  const closeDrawer = () => {
+  const closeForm = () => {
     revokeBlobUrl(coverPhoto);
     galleryPhotos.forEach((p) => revokeBlobUrl(p?.image_url));
-    setDrawerOpen(false);
+    setFormOpen(false);
     setEditId(null);
     setLoadOneLoading(false);
     if (coverInputRef.current) coverInputRef.current.value = '';
@@ -273,7 +272,7 @@ export default function AdminBlogsPage() {
       const fd = buildBlogUpsertFormData(payload);
       await postBlogMultipart(fd);
       message.success(editId ? 'Blog updated' : 'Blog created');
-      closeDrawer();
+      closeForm();
       resetForm();
       await loadList();
     } catch (err) {
@@ -365,45 +364,54 @@ export default function AdminBlogsPage() {
   ];
 
   return (
-    <div className="admin-blogs-page" style={{ maxWidth: 1100 }}>
-      <Space direction="vertical" size="large" style={{ width: '100%' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>
-          <div>
-            <Title level={2} style={{ margin: 0 }}>
-              Blog posts
-            </Title>
-            <Text type="secondary">Create and edit posts shown on the public site (API).</Text>
-          </div>
-          <Button type="primary" onClick={openCreate}>
-            Add blog
-          </Button>
-        </div>
+    <div className="admin-blogs-page">
+      <div className={`admin-blogs-layout ${formOpen ? 'admin-blogs-layout--form-only' : ''}`}>
+        {!formOpen ? (
+          <section className="admin-blogs-main">
+            <Space direction="vertical" size="large" style={{ width: '100%' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>
+                <div>
+                  <Title level={2} style={{ margin: 0 }}>
+                    Blog posts
+                  </Title>
+                  <Text type="secondary">Create and edit posts shown on the public site (API).</Text>
+                </div>
+                <Button type="primary" onClick={openCreate}>
+                  Add blog
+                </Button>
+              </div>
 
-        <Table
-          rowKey={(row) => String(getBlogPostId(row) ?? `row-${row.heading ?? ''}`)}
-          loading={listLoading}
-          columns={columns}
-          dataSource={rows}
-          pagination={{ pageSize: 10 }}
-          locale={{ emptyText: 'No blog posts yet. Click Add blog to create one.' }}
-        />
-      </Space>
+              <Table
+                rowKey={(row) => String(getBlogPostId(row) ?? `row-${row.heading ?? ''}`)}
+                loading={listLoading}
+                columns={columns}
+                dataSource={rows}
+                pagination={{ pageSize: 10 }}
+                locale={{ emptyText: 'No blog posts yet. Click Add blog to create one.' }}
+              />
+            </Space>
+          </section>
+        ) : null}
 
-      <Drawer
-        title={editId ? `Edit blog #${editId}` : 'Add blog'}
-        width={720}
-        open={drawerOpen}
-        onClose={closeDrawer}
-        destroyOnClose
-        styles={{ body: { paddingBottom: 24 } }}
-      >
+        {formOpen ? (
+          <aside className="admin-blogs-form-panel" aria-label="Blog form">
+            <div className="admin-blogs-form-header">
+              <Title level={4} style={{ margin: 0 }}>
+                {editId ? `Edit blog #${editId}` : 'Add blog'}
+              </Title>
+              <Button onClick={closeForm}>
+                Back to list
+              </Button>
+            </div>
         {loadOneLoading ? (
           <Text type="secondary">Loading…</Text>
         ) : (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="blog-form-shell">
             <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-              <div>
-                <Text strong>Heading *</Text>
+              <div className="blog-form-field">
+                <Text strong className="blog-form-label">
+                  Heading *
+                </Text>
                 <Input
                   value={heading}
                   onChange={(e) => {
@@ -414,11 +422,13 @@ export default function AdminBlogsPage() {
                   status={errors.heading ? 'error' : undefined}
                   style={{ marginTop: 6 }}
                 />
-                {errors.heading ? <Text type="danger">{errors.heading}</Text> : null}
+                {errors.heading ? <Text type="danger" className="blog-form-error">{errors.heading}</Text> : null}
               </div>
 
-              <div>
-                <Text strong>Cover photo *</Text>
+              <div className="blog-form-field">
+                <Text strong className="blog-form-label">
+                  Cover photo *
+                </Text>
                 <div className="admin-image-upload-box admin-cover-upload-box" style={{ marginTop: 6 }}>
                   <input
                     ref={coverInputRef}
@@ -452,11 +462,15 @@ export default function AdminBlogsPage() {
                     </button>
                   )}
                 </div>
-                {errors.cover_photo ? <Text type="danger">{errors.cover_photo}</Text> : null}
+                {errors.cover_photo ? (
+                  <Text type="danger" className="blog-form-error">{errors.cover_photo}</Text>
+                ) : null}
               </div>
 
-              <div>
-                <Text strong>Category *</Text>
+              <div className="blog-form-field">
+                <Text strong className="blog-form-label">
+                  Category *
+                </Text>
                 <Input
                   value={category}
                   onChange={(e) => {
@@ -467,11 +481,13 @@ export default function AdminBlogsPage() {
                   status={errors.category ? 'error' : undefined}
                   style={{ marginTop: 6 }}
                 />
-                {errors.category ? <Text type="danger">{errors.category}</Text> : null}
+                {errors.category ? <Text type="danger" className="blog-form-error">{errors.category}</Text> : null}
               </div>
 
-              <div>
-                <Text strong>Author</Text>
+              <div className="blog-form-field">
+                <Text strong className="blog-form-label">
+                  Author
+                </Text>
                 <Input
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
@@ -480,13 +496,17 @@ export default function AdminBlogsPage() {
                 />
               </div>
 
-              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                <div>
-                  <Text strong>Read time (minutes)</Text>
+              <div className="blog-form-row">
+                <div className="blog-form-field blog-form-field-sm">
+                  <Text strong className="blog-form-label">
+                    Read time (minutes)
+                  </Text>
                   <InputNumber min={1} value={readTimeMinutes} onChange={(v) => setReadTimeMinutes(v ?? 5)} style={{ marginTop: 6, display: 'block', width: 160 }} />
                 </div>
-                <div>
-                  <Text strong>Publish date</Text>
+                <div className="blog-form-field blog-form-field-lg">
+                  <Text strong className="blog-form-label">
+                    Publish date
+                  </Text>
                   <DatePicker
                     value={publishedAt}
                     onChange={(v) => setPublishedAt(v)}
@@ -494,16 +514,20 @@ export default function AdminBlogsPage() {
                     style={{ marginTop: 6, display: 'block', width: '100%', minWidth: 220 }}
                   />
                 </div>
-                <div style={{ alignSelf: 'flex-end' }}>
-                  <Text strong>Visible on site</Text>
-                  <div style={{ marginTop: 6 }}>
+                <div className="blog-form-field blog-form-switch">
+                  <Text strong className="blog-form-label">
+                    Visible on site
+                  </Text>
+                  <div className="blog-form-switch-control">
                     <Switch checked={isActive} onChange={setIsActive} />
                   </div>
                 </div>
               </div>
 
-              <div>
-                <Text strong>Description * (HTML)</Text>
+              <div className="blog-form-field">
+                <Text strong className="blog-form-label">
+                  Description * (HTML)
+                </Text>
                 <div
                   className={`admin-html-editor-wrap${errors.description ? ' admin-form-input-error' : ''}`}
                   style={{ marginTop: 6 }}
@@ -526,12 +550,16 @@ export default function AdminBlogsPage() {
                     }}
                   />
                 </div>
-                {errors.description ? <Text type="danger">{errors.description}</Text> : null}
+                {errors.description ? (
+                  <Text type="danger" className="blog-form-error">{errors.description}</Text>
+                ) : null}
               </div>
 
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
-                  <Text strong>Gallery images</Text>
+              <div className="blog-form-field">
+                <div className="blog-gallery-head">
+                  <Text strong className="blog-form-label">
+                    Gallery images
+                  </Text>
                   <Space>
                     <input
                       ref={multiFileInputRef}
@@ -619,8 +647,8 @@ export default function AdminBlogsPage() {
                 </div>
               </div>
 
-              <Space style={{ marginTop: 8 }}>
-                <Button onClick={closeDrawer} disabled={saving}>
+              <Space className="blog-form-actions">
+                <Button onClick={closeForm} disabled={saving}>
                   Cancel
                 </Button>
                 <Button type="primary" htmlType="submit" loading={saving}>
@@ -630,7 +658,9 @@ export default function AdminBlogsPage() {
             </Space>
           </form>
         )}
-      </Drawer>
+          </aside>
+        ) : null}
+      </div>
     </div>
   );
 }

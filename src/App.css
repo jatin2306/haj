@@ -1536,6 +1536,11 @@ img {
 .blogSectionEmpty {
   margin: 8px 0 0;
 }
+.blogLoadMoreWrap {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
 .blogCardSkeleton {
   pointer-events: none;
 }

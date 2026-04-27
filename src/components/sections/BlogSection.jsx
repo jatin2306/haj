@@ -38,6 +38,9 @@ function BlogSection() {
     };
   }, []);
 
+  const visiblePosts = posts.slice(0, 4);
+  const hasMoreThanFour = posts.length > 4;
+
   return (
     <section className="section" id="blog" aria-label="Blog">
       <div className="container">
@@ -71,8 +74,9 @@ function BlogSection() {
         )}
 
         {!loading && !error && (
+          <>
           <div className="blogGrid">
-            {posts.map((blog) => {
+            {visiblePosts.map((blog) => {
               const id = getBlogPostId(blog);
               const imageUrl = getCardImage(blog);
               const title = cleanText(blog?.heading) || 'Blog post';
@@ -107,6 +111,14 @@ function BlogSection() {
               );
             })}
           </div>
+          {hasMoreThanFour ? (
+            <div className="blogLoadMoreWrap">
+              <Link className="btn btnPrimary" to="/blog">
+                Load more
+              </Link>
+            </div>
+          ) : null}
+          </>
         )}
 
         {!loading && !error && posts.length === 0 && (

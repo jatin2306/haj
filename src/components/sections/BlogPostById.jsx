@@ -52,8 +52,8 @@ function BlogPostById({ routeRef }) {
         <article className="section blogPostPage" aria-label="Blog error">
           <div className="container">
             <p className="blogPostBackWrap">
-              <Link className="blogPostBack" to="/#blog">
-                ← Back to Home
+              <Link className="blogPostBack" to="/blog">
+                ← Back to blogs
               </Link>
             </p>
             <p className="muted">{error}</p>

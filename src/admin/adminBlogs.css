@@ -1,4 +1,155 @@
 /* Blog admin: Quill + image uploads (same patterns as wedding venue admin). */
+.admin-blogs-page {
+  width: 100%;
+}
+
+.admin-blogs-page .admin-blogs-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.admin-blogs-page .admin-blogs-layout--with-form {
+  grid-template-columns: minmax(0, 1fr) 420px;
+}
+
+.admin-blogs-page .admin-blogs-layout--form-only {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.admin-blogs-page .admin-blogs-main {
+  min-width: 0;
+}
+
+.admin-blogs-page .admin-blogs-form-panel {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px;
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 56px);
+  overflow: auto;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.admin-blogs-page .admin-blogs-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.admin-blogs-page .blog-form-shell {
+  padding: 2px 2px 0;
+}
+
+.admin-blogs-page .blog-form-label {
+  display: inline-block;
+  color: #0f172a;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+.admin-blogs-page .blog-form-field {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.admin-blogs-page .blog-form-row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admin-blogs-page .blog-form-field-sm {
+  grid-column: span 3;
+}
+
+.admin-blogs-page .blog-form-field-lg {
+  grid-column: span 6;
+}
+
+.admin-blogs-page .blog-form-switch {
+  grid-column: span 3;
+}
+
+.admin-blogs-page .blog-form-switch-control {
+  margin-top: 6px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.admin-blogs-page .blog-gallery-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-blogs-page .blog-form-error {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.admin-blogs-page .blog-form-actions {
+  margin-top: 10px;
+}
+
+.admin-blogs-page .blog-form-shell .ant-input,
+.admin-blogs-page .blog-form-shell .ant-input-number,
+.admin-blogs-page .blog-form-shell .ant-picker {
+  border-radius: 10px;
+  border-color: #cbd5e1;
+  min-height: 40px;
+}
+
+.admin-blogs-page .blog-form-shell .ant-input-number {
+  width: 100% !important;
+}
+
+.admin-blogs-page .blog-form-shell .ant-input:focus,
+.admin-blogs-page .blog-form-shell .ant-input-focused,
+.admin-blogs-page .blog-form-shell .ant-input-number-focused,
+.admin-blogs-page .blog-form-shell .ant-picker-focused {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.admin-blogs-page .blog-form-shell .ant-input-status-error,
+.admin-blogs-page .blog-form-shell .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless) {
+  border-color: #dc2626;
+}
+
+.admin-blogs-page .blog-form-shell .ant-switch {
+  background: rgba(15, 23, 42, 0.25);
+}
+
+.admin-blogs-page .blog-form-shell .ant-switch.ant-switch-checked {
+  background: #16a34a;
+}
+
+.admin-blogs-page .admin-image-upload-box {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.admin-blogs-page .admin-image-upload-box:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.admin-blogs-page .admin-image-upload-placeholder {
+  font-weight: 600;
+}
+
 .admin-blogs-page .admin-html-editor-wrap {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
@@ -143,4 +294,32 @@
   height: 0;
   opacity: 0;
   pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .admin-blogs-page .admin-blogs-layout--with-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-blogs-page .admin-blogs-form-panel {
+    position: static;
+    max-height: none;
+    order: -1;
+  }
+
+  .admin-blogs-page .blog-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-blogs-page .blog-form-field-sm,
+  .admin-blogs-page .blog-form-field-lg,
+  .admin-blogs-page .blog-form-switch {
+    grid-column: auto;
+  }
+
+  .admin-blogs-page .blog-form-actions {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
 }

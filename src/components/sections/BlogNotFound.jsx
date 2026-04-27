@@ -6,8 +6,8 @@ function BlogNotFound() {
       <section className="section blogPostPage" aria-label="Blog post not found">
         <div className="container">
           <p className="blogPostBackWrap">
-            <Link className="blogPostBack" to="/#blog">
-              ← Back to Home
+            <Link className="blogPostBack" to="/blog">
+              ← Back to blogs
             </Link>
           </p>
           <header className="blogPostHeader">

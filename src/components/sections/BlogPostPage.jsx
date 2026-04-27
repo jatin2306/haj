@@ -20,8 +20,8 @@ function BlogPostPage({ post }) {
       <article className="section blogPostPage" aria-labelledby="blog-post-title">
         <div className="container">
           <p className="blogPostBackWrap">
-            <Link className="blogPostBack" to="/#blog">
-              ← Back to Home
+            <Link className="blogPostBack" to="/blog">
+              ← Back to blogs
             </Link>
           </p>
           <header className="blogPostHeader">
