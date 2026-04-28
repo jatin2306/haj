@@ -38,6 +38,16 @@ function revokeBlobUrl(url) {
 }
 
 const initialGallerySlot = () => ({ file: null, image_url: '', display_order: 0 });
+const REPLACEMENT_CHAR_REGEX = /\uFFFD+/g;
+
+function sanitizeImportedText(value) {
+  if (typeof value !== 'string' || !value) return '';
+  return value
+    .replace(REPLACEMENT_CHAR_REGEX, ' ')
+    .replace(/\u00A0/g, ' ')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
 
 export default function AdminBlogsPage() {
   const [rows, setRows] = useState([]);
@@ -122,10 +132,10 @@ export default function AdminBlogsPage() {
               display_order: p?.display_order ?? 0,
             }))
         : [initialGallerySlot()];
-    setHeading(blog.heading ?? '');
-    setDescription(blog.description ?? '');
-    setCategory(blog.category ?? '');
-    setAuthor(blog.author || 'Away to Makkah');
+    setHeading(sanitizeImportedText(blog.heading ?? ''));
+    setDescription(sanitizeImportedText(blog.description ?? ''));
+    setCategory(sanitizeImportedText(blog.category ?? ''));
+    setAuthor(sanitizeImportedText(blog.author || 'Away to Makkah'));
     setReadTimeMinutes(blog.read_time_minutes != null ? Number(blog.read_time_minutes) : 5);
     setPublishedAt(blog.published_at ? dayjs(blog.published_at) : null);
     setIsActive(blog.is_active !== false);
@@ -257,9 +267,9 @@ export default function AdminBlogsPage() {
     const payload = {
       id: editId ?? undefined,
       heading: heading.trim(),
-      description: description.trim(),
-      category: category.trim(),
-      author: author?.trim() || 'Away to Makkah',
+      description: sanitizeImportedText(description),
+      category: sanitizeImportedText(category),
+      author: sanitizeImportedText(author) || 'Away to Makkah',
       read_time_minutes: Math.max(1, parseInt(readTimeMinutes, 10) || 5),
       is_active: isActive,
       published_at: publishedAt ? publishedAt.toISOString() : undefined,
@@ -415,7 +425,7 @@ export default function AdminBlogsPage() {
                 <Input
                   value={heading}
                   onChange={(e) => {
-                    setHeading(e.target.value);
+                      setHeading(sanitizeImportedText(e.target.value));
                     if (errors.heading) setErrors((x) => ({ ...x, heading: '' }));
                   }}
                   placeholder="e.g. Umrah planning tips"
@@ -474,7 +484,7 @@ export default function AdminBlogsPage() {
                 <Input
                   value={category}
                   onChange={(e) => {
-                    setCategory(e.target.value);
+                        setCategory(sanitizeImportedText(e.target.value));
                     if (errors.category) setErrors((x) => ({ ...x, category: '' }));
                   }}
                   placeholder="e.g. Travel tips"
@@ -490,7 +500,7 @@ export default function AdminBlogsPage() {
                 </Text>
                 <Input
                   value={author}
-                  onChange={(e) => setAuthor(e.target.value)}
+                      onChange={(e) => setAuthor(sanitizeImportedText(e.target.value))}
                   placeholder="Away to Makkah"
                   style={{ marginTop: 6 }}
                 />
@@ -536,7 +546,7 @@ export default function AdminBlogsPage() {
                     theme="snow"
                     value={description}
                     onChange={(v) => {
-                      setDescription(v);
+                          setDescription(sanitizeImportedText(v));
                       if (errors.description) setErrors((x) => ({ ...x, description: '' }));
                     }}
                     modules={{

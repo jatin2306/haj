@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom';
-import { cleanText, formatBlogDate, getCardImage, getExcerpt } from '../../utils/blogContent';
+import {
+  cleanText,
+  formatBlogDate,
+  getCardImage,
+  getExcerpt,
+  sanitizeBlogHtml,
+} from '../../utils/blogContent';
 
 function BlogPostPage({ post }) {
   const title = cleanText(post?.heading) || 'Blog post';
@@ -41,7 +47,7 @@ function BlogPostPage({ post }) {
             {post?.description ? (
               <div
                 className="blogPostHtml"
-                dangerouslySetInnerHTML={{ __html: String(post.description) }}
+                dangerouslySetInnerHTML={{ __html: sanitizeBlogHtml(String(post.description)) }}
               />
             ) : null}
           </div>

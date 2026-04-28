@@ -1,4 +1,14 @@
 /** Text and image helpers for Tour & Travels blog API payloads. */
+const REPLACEMENT_CHAR_REGEX = /\uFFFD+/g;
+
+export function sanitizeBrokenText(value) {
+  if (!value || typeof value !== 'string') return '';
+  return value
+    .replace(REPLACEMENT_CHAR_REGEX, ' ')
+    .replace(/\u00A0/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 export function getCardImage(item) {
   if (item?.cover_photo && typeof item.cover_photo === 'string' && !item.cover_photo.startsWith('C:\\')) {
@@ -28,7 +38,7 @@ export function cleanText(value) {
   if (!value || typeof value !== 'string') return '';
   const withoutTags = value.replace(/<[^>]*>/g, ' ');
   const decoded = decodeHtmlEntities(withoutTags);
-  return decoded.replace(/\s+/g, ' ').trim();
+  return sanitizeBrokenText(decoded);
 }
 
 /** URL segment derived from heading (used only to match legacy / slug URLs, not for new links). */
@@ -60,6 +70,11 @@ export function getExcerpt(item) {
   const desc = item?.description ?? '';
   const plain = cleanText(desc);
   return plain ? `${plain.slice(0, 180)}${plain.length > 180 ? '…' : ''}` : '';
+}
+
+export function sanitizeBlogHtml(value) {
+  if (!value || typeof value !== 'string') return '';
+  return value.replace(REPLACEMENT_CHAR_REGEX, ' ').replace(/\u00A0/g, ' ');
 }
 
 export function formatBlogDate(dateStr) {
