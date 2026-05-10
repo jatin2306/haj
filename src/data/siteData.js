@@ -6,7 +6,7 @@ export const CONTACT = {
   email: 'info@awaytomakkah.com',
 };
 
-export const PACKAGES = [
+export const HAJJ_PACKAGES = [
   {
     id: 'hajj-5-star-shifting-2027',
     title: 'Hajj Packages 2027 - 5 Star Shifting',
@@ -47,6 +47,9 @@ export const PACKAGES = [
     flightsNote: null,
     earlyBird: null,
   },
+];
+
+export const UMRAH_PACKAGES = [
   {
     id: 'ramadhan-2027',
     title: 'Ramadhan 2027 Umrah Package',
@@ -264,6 +267,9 @@ export const PACKAGES = [
     earlyBird: null,
   },
 ];
+
+/** @deprecated Prefer HAJJ_PACKAGES and UMRAH_PACKAGES; kept as the full catalogue. */
+export const PACKAGES = [...HAJJ_PACKAGES, ...UMRAH_PACKAGES];
 
 export const HOTELS = [
   { id: '1', name: 'Al Marwa Rayhaan Rotana', priceText: 'From £189.99', image: '1.jpg' },

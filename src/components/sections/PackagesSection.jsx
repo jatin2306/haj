@@ -8,7 +8,24 @@ import packageBg7 from '../../assets/Lutonumrahtours photos/7.jpg';
 import packageBg8 from '../../assets/Lutonumrahtours photos/8.jpg';
 import packageBg9 from '../../assets/Lutonumrahtours photos/9.jpg';
 
-function PackagesSection({ packages }) {
+const defaultUmrahIntro = (deposit) => (
+  <>
+    Prices shown are per person for room sharing as stated.
+    £{deposit.toFixed(2)} deposit with payment plan applies where listed. Breakfast included unless
+    otherwise stated on your booking. Confirm flight arrangements with our agents for packages that do
+    not include flights.
+  </>
+);
+
+function PackagesSection({
+  packages,
+  sectionId = 'packages',
+  sectionClassName = 'section alt',
+  kicker = 'Packages',
+  heading = 'Umrah packages - dates and prices',
+  ariaLabel = 'Umrah packages',
+  intro,
+}) {
   const flightsLineBreakText = 'Please call our agents for flights';
   const priceRows = [
     { key: 'quad', label: 'Quad sharing' },
@@ -42,20 +59,17 @@ function PackagesSection({ packages }) {
     );
   };
 
+  const introContent =
+    intro !== undefined ? intro : defaultUmrahIntro(packages[0].deposit);
+
   return (
-    <section className="section alt" id="packages" aria-label="Umrah packages">
+    <section className={sectionClassName} id={sectionId} aria-label={ariaLabel}>
       <div className="container">
         <div className="sectionHead">
           <div>
-            <div className="kicker">Packages</div>
-            <h2 className="h2">Umrah packages - dates and prices</h2>
-            <p className="muted">
-              Prices shown are per person for room sharing as stated.
-              £{packages[0].deposit}.00 deposit with payment plan applies where
-              listed. Breakfast included unless otherwise stated on your
-              booking. Confirm flight arrangements with our agents for packages
-              that do not include flights.
-            </p>
+            <div className="kicker">{kicker}</div>
+            <h2 className="h2">{heading}</h2>
+            <p className="muted">{introContent}</p>
           </div>
         </div>
 

@@ -21,7 +21,14 @@ import AdminBlogsPage from './admin/AdminBlogsPage';
 import RequireAdmin from './admin/RequireAdmin';
 import NotFoundPage from './pages/NotFoundPage';
 import HajjPackage2027Page from './pages/HajjPackage2027Page';
-import { CONTACT, PACKAGES, HOTELS, WHY_CHOOSE, TESTIMONIALS } from './data/siteData';
+import {
+  CONTACT,
+  HAJJ_PACKAGES,
+  HOTELS,
+  UMRAH_PACKAGES,
+  WHY_CHOOSE,
+  TESTIMONIALS,
+} from './data/siteData';
 
 function HomePage() {
   const { waHref, telOffice, telMobile } = useOutletContext();
@@ -30,7 +37,25 @@ function HomePage() {
       <HeroSection contact={CONTACT} />
       <ServicesSection whyChoose={WHY_CHOOSE} />
       <AboutSection />
-      <PackagesSection packages={PACKAGES} />
+      <PackagesSection
+        sectionId="hajj-packages"
+        kicker="Hajj"
+        heading="Hajj packages — 1448 / 2027"
+        ariaLabel="Hajj 2027 packages"
+        intro={
+          <>
+            Prices shown are per person on quad room sharing. £
+            {HAJJ_PACKAGES[0].deposit.toFixed(2)} deposit with payment plan. Full itinerary and flights
+            are confirmed when you book. Bangladesh passport nationality required — see each package for
+            registration deadlines.
+          </>
+        }
+        packages={HAJJ_PACKAGES}
+      />
+      <PackagesSection
+        sectionClassName="section"
+        packages={UMRAH_PACKAGES}
+      />
       {/* <HajjExperienceSection telHref={telMobile} phoneDisplay={CONTACT.mobile} /> */}
       <BlogSection />
       <ContactSection
