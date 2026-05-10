@@ -16,7 +16,7 @@ export const HAJJ_PACKAGES = [
     makkah: 'Shifting package (accommodation details to follow)',
     includes: [
       'Quad room sharing',
-      'Bangladesh passport nationality required',
+      'Bangladeshi passport required',
       'Last day for registration: October 2026',
     ],
     prices: { quad: 8449 },
@@ -29,14 +29,14 @@ export const HAJJ_PACKAGES = [
   },
   {
     id: 'hajj-deluxe-non-shifting-2027',
-    title: 'Hajj Packages 2027 - Deluxe Non Shifting',
+    title: 'Hajj Packages 2027 - Deluxe non-shifting',
     tier: 'Deluxe',
     dates: 'Hajj 2027',
     madinah: 'Full package details to follow',
-    makkah: 'Non shifting package (accommodation details to follow)',
+    makkah: 'Non-shifting package (accommodation details to follow)',
     includes: [
       'Quad room sharing',
-      'Bangladesh passport nationality required',
+      'Bangladeshi passport required',
       'Last day for registration: October 2026',
     ],
     prices: { quad: 6549 },
@@ -64,13 +64,13 @@ export const UMRAH_PACKAGES = [
       'Guided ziyarah tours in Madinah',
       'E-waiver visa (British passport)',
       'Full ground transport',
-      'Haramain train Madinah to Makkah',
+      'Haramain train from Madinah to Makkah',
     ],
     prices: { quad: 1499, triple: 1599, twin: 1699 },
     deposit: 250,
     breakfast: false,
     mealNote: 'Sohoor included',
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote: null,
     earlyBird: null,
   },
@@ -90,9 +90,9 @@ export const UMRAH_PACKAGES = [
     prices: { quad: 555, triple: 655, twin: 755 },
     deposit: 250,
     breakfast: true,
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote:
-      'Flights are not included with this package. Please call our agents for flights',
+      'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
   {
@@ -111,9 +111,9 @@ export const UMRAH_PACKAGES = [
     prices: { quad: 695, triple: 795, twin: 895 },
     deposit: 250,
     breakfast: true,
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote:
-      'Flights are not included with this package. Please call our agents for flights',
+      'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
   {
@@ -136,7 +136,7 @@ export const UMRAH_PACKAGES = [
     prices: { quad: 1399, triple: 1499, twin: 1599 },
     deposit: 250,
     breakfast: true,
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote: null,
     earlyBird: '10% early bird discount if booked before 01 June',
   },
@@ -156,9 +156,9 @@ export const UMRAH_PACKAGES = [
     prices: { quad: 595, triple: 695, twin: 795 },
     deposit: 250,
     breakfast: true,
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote:
-      'Flights are not included with this package. Please call our agents for flights',
+      'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
   {
@@ -177,9 +177,9 @@ export const UMRAH_PACKAGES = [
     prices: { quad: 695, triple: 795, twin: 895 },
     deposit: 250,
     breakfast: true,
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote:
-      'Flights are not included with this package. Please call our agents for flights',
+      'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
   {
@@ -198,9 +198,9 @@ export const UMRAH_PACKAGES = [
     prices: { quad: 799, triple: 899, twin: 999 },
     deposit: 250,
     breakfast: true,
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote:
-      'Flights are not included with this package. Please call our agents for flights',
+      'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
   {
@@ -219,9 +219,9 @@ export const UMRAH_PACKAGES = [
     prices: { quad: 799, triple: 920, twin: 1120 },
     deposit: 250,
     breakfast: true,
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote:
-      'Flights are not included with this package. Please call our agents for flights',
+      'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
   {
@@ -240,9 +240,9 @@ export const UMRAH_PACKAGES = [
     prices: { quad: 695, triple: 795, twin: 895 },
     deposit: 250,
     breakfast: true,
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote:
-      'Flights are not included with this package. Please call our agents for flights',
+      'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
   {
@@ -261,9 +261,9 @@ export const UMRAH_PACKAGES = [
     prices: { quad: 795, triple: 895, twin: 995 },
     deposit: 250,
     breakfast: true,
-    kids: 'Kids under 6yrs stay free with parents inc bb',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote:
-      'Flights are not included with this package. Please call our agents for flights',
+      'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
 ];

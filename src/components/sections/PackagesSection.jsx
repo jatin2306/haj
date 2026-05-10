@@ -26,7 +26,7 @@ function PackagesSection({
   ariaLabel = 'Umrah packages',
   intro,
 }) {
-  const flightsLineBreakText = 'Please call our agents for flights';
+  const flightsLineBreakText = 'Please call our agents for flights.';
   const priceRows = [
     { key: 'quad', label: 'Quad sharing' },
     { key: 'triple', label: 'Triple sharing' },

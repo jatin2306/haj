@@ -18,7 +18,7 @@ function GallerySection() {
             <h2 className="h2">Memories from our Umrah journeys</h2>
             <p className="muted">
               Explore highlights from our trips to Makkah and Madinah. These photos are from our
-              Umrah tours collection.
+              Umrah tours.
             </p>
           </div>
         </div>

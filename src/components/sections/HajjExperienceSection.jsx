@@ -62,7 +62,7 @@ function HajjExperienceSection({ telHref, phoneDisplay }) {
                   />
                 </svg>
               </span>
-              Last date of registration mid-October 2026
+              Last date of registration: mid-October 2026
             </p>
           </div>
 

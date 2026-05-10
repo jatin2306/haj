@@ -58,7 +58,7 @@ function BlogSection() {
             <div className="kicker">Blog</div>
             <h2 className="h2">Guidance for your journey</h2>
             <p className="muted">
-              Short summaries from our articles. Dates and rules can change - always confirm with
+              Short summaries from our articles. Dates and rules can change—always confirm with
               official sources and our team before you travel.
             </p>
           </div>

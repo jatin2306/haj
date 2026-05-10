@@ -7,7 +7,7 @@ function TestimonialsSection({ testimonials = [] }) {
             <div className="kicker">Testimonials</div>
             <h2 className="h2">We make quality travel easy for every Muslim</h2>
             <p className="muted">
-              Since we first opened, we have prioritized care, trust, and support for every pilgrim.
+              Since we first opened, we have prioritised care, trust, and support for every pilgrim.
             </p>
           </div>
         </div>

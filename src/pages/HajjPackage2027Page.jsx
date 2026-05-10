@@ -5,7 +5,7 @@ export default function HajjPackage2027Page() {
         <div className="container">
           <div className="hajjPoster">
             <div className="hajjPosterTop">
-              <p className="hajjOverline">Once in a life time</p>
+              <p className="hajjOverline">Once in a lifetime</p>
               <h1 className="hajjMainTitle">Hajj Experience</h1>
               <p className="hajjSubTitle">Hajj 1448/2027</p>
             </div>
@@ -44,7 +44,7 @@ export default function HajjPackage2027Page() {
               <a href="tel:+447538935033" className="hajjCallLink">
                 Call us: 07538 935 033
               </a>
-              <span>Away To Makkah Umrah Services</span>
+              <span>A Way to Makkah Umrah Services</span>
             </div>
           </div>
         </div>

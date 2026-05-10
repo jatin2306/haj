@@ -50,7 +50,7 @@ function ContactSection({ contact, waHref, telOffice, telMobile }) {
           <div className="contactAside">
             <p className="muted" style={{ maxWidth: 'none' }}>
               For packages where flights are not included, please call our
-              agents to arrange flights. We are here to help with e-waiver visa
+              agents to arrange flights. We are here to help with the e-waiver visa
               (British passport) packages and ground arrangements as set out in
               each offer.
             </p>

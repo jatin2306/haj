@@ -18,7 +18,7 @@ function HeroSection({ contact }) {
             Over 15 years serving pilgrims
           </div>
           <h1 className="heroTitle">
-            Your Journey to Makkah&nbsp;!
+            Your Journey to Makkah!
             <br />
             Starts Here
           </h1>

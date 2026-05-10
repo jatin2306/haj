@@ -72,7 +72,7 @@ function AboutSection() {
             <div className="mediaTitle">A caring team for your spiritual journey.</div>
             <div className="mediaText">
               We combine personal support with practical planning to make your Umrah experience calm,
-              organized, and meaningful.
+              organised, and meaningful.
             </div>
             <div className="mediaBottom">
               <div className="mediaMetric">
