@@ -51,10 +51,12 @@ function HomePage() {
           </>
         }
         packages={HAJJ_PACKAGES}
+        waHref={waHref}
       />
       <PackagesSection
         sectionClassName="section"
         packages={UMRAH_PACKAGES}
+        waHref={waHref}
       />
       {/* <HajjExperienceSection telHref={telMobile} phoneDisplay={CONTACT.mobile} /> */}
       <BlogSection />

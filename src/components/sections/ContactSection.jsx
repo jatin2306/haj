@@ -1,3 +1,5 @@
+import EnquiryForm from '../forms/EnquiryForm';
+
 function ContactSection({ contact, waHref, telOffice, telMobile }) {
   return (
     <section className="section alt" id="contact" aria-label="Contact">
@@ -8,7 +10,7 @@ function ContactSection({ contact, waHref, telOffice, telMobile }) {
             <h2 className="h2">Get in touch</h2>
             <p className="muted">
               Call or message us for package availability, flights, and payment
-              plans.
+              plans — or send an enquiry using the form.
             </p>
           </div>
         </div>
@@ -48,27 +50,13 @@ function ContactSection({ contact, waHref, telOffice, telMobile }) {
             </div>
           </div>
           <div className="contactAside">
-            <p className="muted" style={{ maxWidth: 'none' }}>
-              For packages where flights are not included, please call our
-              agents to arrange flights. We are here to help with the e-waiver visa
-              (British passport) packages and ground arrangements as set out in
-              each offer.
-            </p>
-            <div className="cta contactCta">
-              <div>
-                <div className="ctaTitle">Ready to book?</div>
-                <div className="ctaText">
-                  Speak to us about room sharing, deposits, and travel dates.
-                </div>
-              </div>
-              <div className="ctaActions">
-                <a className="btn btnPrimary" href={telOffice}>
-                  Call office
-                </a>
-                <a className="btn btnGhost" href={`mailto:${contact.email}`}>
-                  Email
-                </a>
-              </div>
+            <div className="contactFormCard">
+              <div className="contactFormTitle">Contact us</div>
+              <p className="muted contactFormIntro">
+                Share your travel dates and questions. We will respond as soon as
+                we can.
+              </p>
+              <EnquiryForm source="contact" submitLabel="Send message" />
             </div>
           </div>
         </div>

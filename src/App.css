@@ -592,6 +592,176 @@ img {
   font-size: 12px;
   line-height: 1.5;
 }
+.fieldInput,
+.fieldTextarea {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 14px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  outline: none;
+  font-weight: 600;
+  font-family: inherit;
+  resize: vertical;
+}
+.fieldInput:focus,
+.fieldTextarea:focus,
+.field select:focus {
+  border-color: rgba(202, 164, 75, 0.35);
+  box-shadow: 0 0 0 4px rgba(202, 164, 75, 0.14);
+}
+.fieldInputError {
+  border-color: rgba(185, 28, 28, 0.45);
+}
+.fieldError {
+  font-size: 12px;
+  color: #b91c1c;
+  font-weight: 700;
+}
+.enquiryFormRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.enquiryForm--mini .enquiryFormRow,
+.enquiryForm--mini .miniFormRow {
+  margin-bottom: 0;
+}
+.enquiryForm .field {
+  margin-bottom: 12px;
+}
+.enquiryForm--mini .field:last-of-type {
+  margin-bottom: 10px;
+}
+.formFeedback {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+.formFeedback--success {
+  color: rgba(17, 90, 50, 0.95);
+}
+.enquiryPackageTag {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(202, 164, 75, 0.1);
+  border: 1px solid rgba(202, 164, 75, 0.22);
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.contactFormCard {
+  border-radius: 22px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.86);
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+}
+.contactFormTitle {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.contactFormIntro {
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+.packageCardActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  align-items: stretch;
+}
+.packageEnquireBtn {
+  margin-top: 0;
+  flex: 1;
+}
+.packageWhatsAppBtn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  min-height: 44px;
+  border-radius: 14px;
+  background: #25d366;
+  color: #fff;
+  border: 1px solid rgba(17, 90, 50, 0.2);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.28);
+  text-decoration: none;
+  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+.packageWhatsAppBtn:hover {
+  background: #20bd5a;
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.34);
+  color: #fff;
+}
+.packageWhatsAppBtn:active {
+  transform: translateY(1px);
+}
+.enquiryModalRoot {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.enquiryModalBackdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(11, 15, 23, 0.55);
+  cursor: pointer;
+}
+.enquiryModalDialog {
+  position: relative;
+  width: min(100%, 480px);
+  max-height: min(92vh, 720px);
+  overflow: auto;
+  border-radius: 22px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 24px 64px rgba(11, 15, 23, 0.28);
+}
+.enquiryModalHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.enquiryModalTitle {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+.enquiryModalIntro {
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+.enquiryModalClose {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text);
+}
+.enquiryModalClose:hover {
+  background: rgba(15, 23, 42, 0.06);
+}
 
 .section {
   padding: 62px 0;
@@ -2171,7 +2341,8 @@ img {
   .footerCols {
     grid-template-columns: 1fr;
   }
-  .miniFormRow {
+  .miniFormRow,
+  .enquiryFormRow {
     grid-template-columns: 1fr;
   }
   .sectionHead {

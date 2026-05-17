@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import { EnquiryProvider } from '../context/EnquiryContext';
 import { CONTACT } from '../data/siteData';
 
 export default function MarketingLayout() {
@@ -20,7 +21,7 @@ export default function MarketingLayout() {
   }, [pathname, hash]);
 
   return (
-    <>
+    <EnquiryProvider>
       <a className="skipLink" href="#content">
         Skip to content
       </a>
@@ -29,6 +30,6 @@ export default function MarketingLayout() {
         <Outlet context={{ waHref, telOffice, telMobile }} />
         <Footer contact={CONTACT} telOffice={telOffice} telMobile={telMobile} />
       </div>
-    </>
+    </EnquiryProvider>
   );
 }
