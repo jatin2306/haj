@@ -1,7 +1,13 @@
 import './App.css';
 import './admin/admin.css';
 import { BrowserRouter, Route, Routes, useOutletContext, useParams } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import MarketingLayout from './layouts/MarketingLayout';
+import SEO, {
+  organizationSchema,
+  packagesListSchema,
+  breadcrumbSchema,
+} from './components/SEO';
 import HeroSection from './components/sections/HeroSection';
 import ServicesSection from './components/sections/ServicesSection';
 import AboutSection from './components/sections/AboutSection';
@@ -32,8 +38,19 @@ import {
 
 function HomePage() {
   const { waHref, telOffice, telMobile } = useOutletContext();
+
+  const homeSchema = [
+    organizationSchema(),
+    packagesListSchema([...HAJJ_PACKAGES, ...UMRAH_PACKAGES]),
+    breadcrumbSchema([{ name: 'Home', url: '/' }]),
+  ];
+
   return (
     <main id="content">
+      <SEO
+        path="/"
+        schema={homeSchema}
+      />
       <HeroSection contact={CONTACT} />
       <ServicesSection whyChoose={WHY_CHOOSE} />
       <AboutSection />
@@ -74,6 +91,15 @@ function HomePage() {
 function GalleryPage() {
   return (
     <main id="content">
+      <SEO
+        title="Umrah Gallery — Photos from Makkah & Madinah"
+        description="Browse photos from our Umrah journeys to Makkah and Madinah. See highlights from our guided tours, hotels near the Haram, and pilgrim experiences."
+        path="/gallery"
+        schema={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Gallery', url: '/gallery' },
+        ])}
+      />
       <GallerySection />
     </main>
   );
@@ -82,6 +108,15 @@ function GalleryPage() {
 function HotelsPage() {
   return (
     <main id="content">
+      <SEO
+        title="Hotels near Haram — Makkah & Madinah Stays"
+        description="Explore our handpicked hotels near the Haram in Makkah and the Prophet's Mosque in Madinah. Comfortable stays for your Hajj and Umrah journey."
+        path="/hotels"
+        schema={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Hotels', url: '/hotels' },
+        ])}
+      />
       <HotelsSection hotels={HOTELS} />
     </main>
   );
@@ -123,8 +158,10 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }

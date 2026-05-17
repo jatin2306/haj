@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchPublishedBlogs } from '../../api/blogsApi';
+import SEO, { breadcrumbSchema } from '../SEO';
 import {
   cleanText,
   formatBlogDate,
@@ -49,6 +50,15 @@ function BlogListingPage() {
 
   return (
     <main id="content">
+      <SEO
+        title="Blog — Hajj & Umrah Travel Guides"
+        description="Read our latest articles on Hajj and Umrah travel tips, guides, rules, and spiritual advice for pilgrims from the UK."
+        path="/blog"
+        schema={breadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Blog', url: '/blog' },
+        ])}
+      />
       <section className="section" aria-label="Blog listing">
         <div className="container">
           <div className="sectionHead">

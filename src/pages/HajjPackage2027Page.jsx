@@ -1,6 +1,37 @@
+import SEO, { breadcrumbSchema } from '../components/SEO';
+
 export default function HajjPackage2027Page() {
+  const hajjSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Hajj Package 2027 — A Way to Makkah',
+    description:
+      'Hajj 1448/2027 packages from UK. 5-Star Shifting from £8,449 and Deluxe Non-Shifting from £6,549 per person quad sharing. Bangladeshi passport required.',
+    brand: { '@type': 'Organization', name: 'A Way to Makkah Umrah Services' },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'GBP',
+      lowPrice: 6549,
+      highPrice: 8449,
+      offerCount: 2,
+      availability: 'https://schema.org/InStock',
+    },
+  };
+
   return (
     <main id="content" className="hajjPage">
+      <SEO
+        title="Hajj Package 2027 — 5-Star & Deluxe from UK"
+        description="Book your Hajj 1448/2027 package. 5-Star Shifting from £8,449, Deluxe Non-Shifting from £6,549 per person. Bangladeshi passport required. Register by Oct 2026."
+        path="/hajj-package-2027"
+        schema={[
+          hajjSchema,
+          breadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'Hajj Package 2027', url: '/hajj-package-2027' },
+          ]),
+        ]}
+      />
       <section className="hajjHero2027" aria-label="Hajj package 2027">
         <div className="container">
           <div className="hajjPoster">

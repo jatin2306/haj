@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import SEO, { blogPostSchema, breadcrumbSchema } from '../SEO';
 import {
   cleanText,
   formatBlogDate,
@@ -21,8 +22,25 @@ function BlogPostPage({ post }) {
 
   const coverUrl = getCardImage(post);
 
+  const postSchema = [
+    blogPostSchema(post),
+    breadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Blog', url: '/blog' },
+      { name: title },
+    ]),
+  ];
+
   return (
     <main id="content">
+      <SEO
+        title={title}
+        description={excerpt || `Read "${title}" on A Way to Makkah blog.`}
+        path={`/blog/${post?.id || ''}`}
+        image={coverUrl || undefined}
+        type="article"
+        schema={postSchema}
+      />
       <article className="section blogPostPage" aria-labelledby="blog-post-title">
         <div className="container">
           <p className="blogPostBackWrap">

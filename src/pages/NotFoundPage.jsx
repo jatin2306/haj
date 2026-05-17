@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 export default function NotFoundPage() {
   return (
     <main id="content">
+      <SEO title="Page Not Found" noindex />
       <section className="section notFoundPage" aria-label="Page not found">
         <div className="container">
           <header className="blogPostHeader">
