@@ -1276,11 +1276,28 @@ img {
   padding-top: 18px;
   border-top: 1px solid rgba(15, 23, 42, 0.08);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   color: var(--muted-2);
   font-size: 12px;
+}
+.footerCredit {
+  flex: 1 1 100%;
+  margin: 0;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+.footerCredit a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 700;
+}
+.footerCredit a:hover {
+  color: var(--accent);
 }
 .footerBottomLinks {
   display: flex;
@@ -2186,6 +2203,10 @@ img {
   .footerBottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .footerCredit {
+    text-align: left;
+    width: 100%;
   }
   .aboutCopyGrid,
   .aboutHighlights {

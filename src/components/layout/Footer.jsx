@@ -48,6 +48,16 @@ function Footer({ contact, telOffice }) {
         <div className="footerBottomLinks">
           <Link to="/#contact">Contact</Link>
         </div>
+        <p className="footerCredit">
+          Designed and developed by{' '}
+          <a
+            href="https://brandinglift.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            brandinglift.com
+          </a>
+        </p>
       </div>
     </footer>
   );
