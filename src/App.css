@@ -644,6 +644,9 @@ img {
 .formFeedback--success {
   color: rgba(17, 90, 50, 0.95);
 }
+.formFeedback--error {
+  color: rgba(140, 35, 35, 0.95);
+}
 .enquiryPackageTag {
   padding: 10px 12px;
   border-radius: 14px;

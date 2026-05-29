@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { buildEnquiryMailto, submitEnquiry } from '../../api/enquiriesApi';
+import { isEmailJsConfigured, submitEnquiryViaEmailJs } from '../../api/emailjsApi';
 import { EMPTY_ENQUIRY, validateEnquiry } from '../../utils/enquiryValidation';
+
+const SUCCESS_MESSAGE =
+  'Thanks for connecting! We will be back to you soon.';
 
 function PackageField({ packageTitle }) {
   return (
@@ -64,24 +67,25 @@ function EnquiryForm({
     setStatus('submitting');
     setFeedback('');
 
-    try {
-      const result = await submitEnquiry(payload);
-      setStatus('success');
+    if (!isEmailJsConfigured()) {
+      setStatus('error');
       setFeedback(
-        result.via === 'api'
-          ? 'Thank you — we have received your enquiry and will be in touch shortly.'
-          : 'Thank you — your enquiry has been sent.',
+        'Contact form is temporarily unavailable. Please call or email us directly.',
       );
+      return;
+    }
+
+    try {
+      await submitEnquiryViaEmailJs(payload);
+      setStatus('success');
+      setFeedback(SUCCESS_MESSAGE);
       setValues({ ...EMPTY_ENQUIRY });
       onSuccess?.();
     } catch {
-      window.location.href = buildEnquiryMailto(payload);
-      setStatus('success');
+      setStatus('error');
       setFeedback(
-        'We could not reach our server — your email app should open so you can send the enquiry directly.',
+        'We could not send your message. Please try again or contact us by phone or email.',
       );
-      setValues({ ...EMPTY_ENQUIRY });
-      onSuccess?.();
     }
   };
 
