@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchPublishedBlogs } from '../../api/blogsApi';
-import SEO, { breadcrumbSchema } from '../SEO';
+import SEO, { blogListingSchema, pageSchemas } from '../SEO';
 import {
   cleanText,
   formatBlogDate,
@@ -9,6 +9,7 @@ import {
   getBlogPostId,
   getCardImage,
   getExcerpt,
+  sortPublishedBlogsNewestFirst,
 } from '../../utils/blogContent';
 
 function BlogListingPage() {
@@ -23,15 +24,7 @@ function BlogListingPage() {
       setError(null);
       try {
         const list = await fetchPublishedBlogs();
-        const sorted = [...list].sort((a, b) => {
-          const ta = a?.published_at ? new Date(a.published_at).getTime() : Number.POSITIVE_INFINITY;
-          const tb = b?.published_at ? new Date(b.published_at).getTime() : Number.POSITIVE_INFINITY;
-          if (ta !== tb) return ta - tb; // first come, first served: oldest first
-
-          const ida = a?.id ?? 0;
-          const idb = b?.id ?? 0;
-          return ida - idb;
-        });
+        const sorted = sortPublishedBlogsNewestFirst(list);
         if (!cancelled) setPosts(sorted);
       } catch (e) {
         if (!cancelled) {
@@ -48,16 +41,28 @@ function BlogListingPage() {
     };
   }, []);
 
+  const title = 'Blog — Hajj & Umrah Travel Guides';
+  const description =
+    'Read our latest articles on Hajj and Umrah travel tips, guides, rules, and spiritual advice for pilgrims from the UK.';
+
   return (
     <main id="content">
       <SEO
-        title="Blog — Hajj & Umrah Travel Guides"
-        description="Read our latest articles on Hajj and Umrah travel tips, guides, rules, and spiritual advice for pilgrims from the UK."
+        title={title}
+        description={description}
         path="/blog"
-        schema={breadcrumbSchema([
-          { name: 'Home', url: '/' },
-          { name: 'Blog', url: '/blog' },
-        ])}
+        schema={[
+          ...pageSchemas({
+            path: '/blog',
+            name: title,
+            description,
+            breadcrumbs: [
+              { name: 'Home', url: '/' },
+              { name: 'Blog', url: '/blog' },
+            ],
+          }),
+          blogListingSchema(),
+        ]}
       />
       <section className="section" aria-label="Blog listing">
         <div className="container">
@@ -67,7 +72,7 @@ function BlogListingPage() {
               <h1 className="h2">All blog posts</h1>
               <p className="muted">Browse all articles and open any post for full details.</p>
             </div>
-            <Link className="btn btnGhost" to="/#blog">
+            <Link className="btn btnGhost" to="/">
               Back to home
             </Link>
           </div>

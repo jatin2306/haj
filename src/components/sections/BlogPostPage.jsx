@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SEO, { blogPostSchema, breadcrumbSchema } from '../SEO';
+import SEO, { blogPostSchema, pageSchemas } from '../SEO';
 import {
   cleanText,
   formatBlogDate,
@@ -23,12 +23,18 @@ function BlogPostPage({ post }) {
   const coverUrl = getCardImage(post);
 
   const postSchema = [
+    ...pageSchemas({
+      path: `/blog/${post?.id || ''}`,
+      name: title,
+      description: excerpt || `Read "${title}" on A Way to Makkah blog.`,
+      pageType: 'WebPage',
+      breadcrumbs: [
+        { name: 'Home', url: '/' },
+        { name: 'Blog', url: '/blog' },
+        { name: title },
+      ],
+    }),
     blogPostSchema(post),
-    breadcrumbSchema([
-      { name: 'Home', url: '/' },
-      { name: 'Blog', url: '/blog' },
-      { name: title },
-    ]),
   ];
 
   return (

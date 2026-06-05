@@ -29,7 +29,7 @@ function Footer({ contact, telOffice }) {
             <Link to="/hotels">Hotels</Link>
             <Link to="/#packages">Packages</Link>
             <Link to="/gallery">Gallery</Link>
-            <Link to="/#blog">Blog</Link>
+            <Link to="/blog">Blog</Link>
           </div>
           <div className="footerCol">
             <div className="footerTitle">Contact</div>

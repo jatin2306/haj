@@ -8,6 +8,7 @@ import {
   getBlogPostId,
   getCardImage,
   getExcerpt,
+  sortPublishedBlogsNewestFirst,
 } from '../../utils/blogContent';
 
 function BlogSection() {
@@ -22,15 +23,7 @@ function BlogSection() {
       setError(null);
       try {
         const list = await fetchPublishedBlogs();
-        const sorted = [...list].sort((a, b) => {
-          const ta = a?.published_at ? new Date(a.published_at).getTime() : Number.POSITIVE_INFINITY;
-          const tb = b?.published_at ? new Date(b.published_at).getTime() : Number.POSITIVE_INFINITY;
-          if (ta !== tb) return ta - tb; // first come, first served: oldest first
-
-          const ida = a?.id ?? 0;
-          const idb = b?.id ?? 0;
-          return ida - idb;
-        });
+        const sorted = sortPublishedBlogsNewestFirst(list);
         if (!cancelled) setPosts(sorted);
       } catch (e) {
         if (!cancelled) {

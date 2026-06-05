@@ -2,26 +2,18 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
-const HOME_NAV_LINKS = [
+const NAV_LINKS = [
   { to: '/hajj-package-2027', label: 'Hajj Package 2027' },
   { to: '/#about', label: 'About' },
   { to: '/#packages', label: 'Packages' },
   { to: '/gallery', label: 'Gallery' },
-  { to: '/#blog', label: 'Blog' },
+  { to: '/blog', label: 'Blogs' },
 ];
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
-  const isHome = pathname === '/';
-  const navLinks = isHome
-    ? HOME_NAV_LINKS
-    : [
-        { to: '/', label: 'Home' },
-        { to: '/hajj-package-2027', label: 'Hajj Package 2027' },
-        { to: '/gallery', label: 'Gallery' },
-        { to: '/#contact', label: 'Contact' },
-      ];
+  const isBlogSection = pathname === '/blog' || pathname.startsWith('/blog/');
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
@@ -61,8 +53,13 @@ function Header() {
           </Link>
 
           <nav className="navLinks" aria-label="Primary">
-            {navLinks.map(({ to, label }) => (
-              <Link key={to} to={to}>
+            {NAV_LINKS.map(({ to, label }) => (
+              <Link
+                key={to}
+                to={to}
+                className={to === '/blog' && isBlogSection ? 'navLinkActive' : undefined}
+                aria-current={to === '/blog' && isBlogSection ? 'page' : undefined}
+              >
                 {label}
               </Link>
             ))}
@@ -124,8 +121,14 @@ function Header() {
             </button>
           </div>
           <div className="navMobileLinks">
-            {navLinks.map(({ to, label }) => (
-              <Link key={to} to={to} onClick={closeMenu}>
+            {NAV_LINKS.map(({ to, label }) => (
+              <Link
+                key={to}
+                to={to}
+                className={to === '/blog' && isBlogSection ? 'navLinkActive' : undefined}
+                aria-current={to === '/blog' && isBlogSection ? 'page' : undefined}
+                onClick={closeMenu}
+              >
                 {label}
               </Link>
             ))}

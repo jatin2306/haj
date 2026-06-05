@@ -1,15 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { isEmailJsConfigured, submitEnquiryViaEmailJs } from '../../api/emailjsApi';
 import { EMPTY_ENQUIRY, validateEnquiry } from '../../utils/enquiryValidation';
 
-const SUCCESS_MESSAGE =
-  'Thanks for connecting! We will be back to you soon.';
+const MODAL_CLOSE_DELAY_MS = 2800;
 
 function PackageField({ packageTitle }) {
   return (
     <div className="field">
       <div className="fieldLabel">Package</div>
       <div className="enquiryPackageTag">{packageTitle}</div>
+    </div>
+  );
+}
+
+function EnquiryFormSuccess({ variant, onReset, closing }) {
+  const isModal = variant === 'modal';
+
+  return (
+    <div className="enquiryFormSuccess" role="status" aria-live="polite">
+      <div className="enquiryFormSuccessIcon" aria-hidden="true">
+        <span className="enquiryFormSuccessCheck">✓</span>
+      </div>
+      <h3 className="enquiryFormSuccessTitle">Message sent!</h3>
+      <p className="enquiryFormSuccessLead">
+        Thanks for connecting! We will be back to you soon.
+      </p>
+      <p className="enquiryFormSuccessNote muted">
+        {isModal
+          ? closing
+            ? 'Closing…'
+            : 'This window will close in a moment.'
+          : 'We have received your enquiry. A confirmation email is on its way if you provided your email address.'}
+      </p>
+      {!isModal ? (
+        <button type="button" className="btn btnPrimary btnFull" onClick={onReset}>
+          Send another message
+        </button>
+      ) : null}
     </div>
   );
 }
@@ -21,6 +48,7 @@ function EnquiryForm({
   packageTitle = null,
   submitLabel = 'Send enquiry',
   onSuccess,
+  closeAfterSuccessMs,
   requireEmail = true,
   requireMessage = true,
 }) {
@@ -28,10 +56,32 @@ function EnquiryForm({
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
   const [feedback, setFeedback] = useState('');
+  const [closing, setClosing] = useState(false);
 
   const isMini = variant === 'mini';
   const isSubmitting = status === 'submitting';
+  const isSuccess = status === 'success';
+  const formVariant = closeAfterSuccessMs ? 'modal' : variant;
   const fieldId = (name) => `${source}-${name}`;
+
+  const resetForm = () => {
+    setValues({ ...EMPTY_ENQUIRY });
+    setErrors({});
+    setStatus('idle');
+    setFeedback('');
+    setClosing(false);
+  };
+
+  useEffect(() => {
+    if (!isSuccess || !closeAfterSuccessMs || !onSuccess) return undefined;
+
+    const closeTimer = window.setTimeout(() => {
+      setClosing(true);
+      onSuccess();
+    }, closeAfterSuccessMs);
+
+    return () => window.clearTimeout(closeTimer);
+  }, [isSuccess, closeAfterSuccessMs, onSuccess]);
 
   const updateField = (field) => (event) => {
     setValues((current) => ({ ...current, [field]: event.target.value }));
@@ -78,9 +128,6 @@ function EnquiryForm({
     try {
       await submitEnquiryViaEmailJs(payload);
       setStatus('success');
-      setFeedback(SUCCESS_MESSAGE);
-      setValues({ ...EMPTY_ENQUIRY });
-      onSuccess?.();
     } catch {
       setStatus('error');
       setFeedback(
@@ -88,6 +135,16 @@ function EnquiryForm({
       );
     }
   };
+
+  if (isSuccess) {
+    return (
+      <EnquiryFormSuccess
+        variant={formVariant}
+        onReset={resetForm}
+        closing={closing}
+      />
+    );
+  }
 
   return (
     <form
@@ -173,7 +230,7 @@ function EnquiryForm({
       </div>
 
       {feedback ? (
-        <p className={`formFeedback formFeedback--${status}`} role="status">
+        <p className={`formFeedback formFeedback--${status}`} role="alert">
           {feedback}
         </p>
       ) : null}
@@ -189,4 +246,5 @@ function EnquiryForm({
   );
 }
 
+export { MODAL_CLOSE_DELAY_MS };
 export default EnquiryForm;

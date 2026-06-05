@@ -1,10 +1,23 @@
 import { Link } from 'react-router-dom';
-import SEO from '../components/SEO';
+import SEO, { pageSchemas } from '../components/SEO';
 
 export default function NotFoundPage() {
+  const title = 'Page Not Found';
+  const description =
+    'This address does not match any page on our site. Check the link or return to the homepage.';
+
   return (
     <main id="content">
-      <SEO title="Page Not Found" noindex />
+      <SEO
+        title={title}
+        description={description}
+        noindex
+        schema={pageSchemas({
+          path: '/404',
+          name: title,
+          description,
+        })}
+      />
       <section className="section notFoundPage" aria-label="Page not found">
         <div className="container">
           <header className="blogPostHeader">

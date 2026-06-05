@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef } from 'react';
-import EnquiryForm from './EnquiryForm';
+import EnquiryForm, { MODAL_CLOSE_DELAY_MS } from './EnquiryForm';
 
 function EnquiryModal({ modal, onClose }) {
   const titleId = useId();
@@ -68,6 +68,7 @@ function EnquiryModal({ modal, onClose }) {
           packageId={modal.packageId}
           packageTitle={modal.packageTitle}
           submitLabel="Send enquiry"
+          closeAfterSuccessMs={MODAL_CLOSE_DELAY_MS}
           onSuccess={onClose}
         />
       </div>

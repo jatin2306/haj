@@ -59,10 +59,31 @@ export function getBlogPostId(blog) {
   return raw;
 }
 
+function publishedAtTime(blog) {
+  const t = blog?.published_at ? new Date(blog.published_at).getTime() : Number.NaN;
+  return Number.isNaN(t) ? null : t;
+}
+
+/** Newest published posts first; same order used on home preview and /blog listing. */
+export function sortPublishedBlogsNewestFirst(list) {
+  return [...list].sort((a, b) => {
+    const ta = publishedAtTime(a);
+    const tb = publishedAtTime(b);
+
+    if (ta != null && tb != null && ta !== tb) return tb - ta;
+    if (ta != null && tb == null) return -1;
+    if (ta == null && tb != null) return 1;
+
+    const ida = Number(getBlogPostId(a)) || 0;
+    const idb = Number(getBlogPostId(b)) || 0;
+    return idb - ida;
+  });
+}
+
 /** Public blog article URL — always use the real id so detail fetch hits `GET /blogs/:id` correctly. */
 export function getBlogPath(blog) {
   const postId = getBlogPostId(blog);
-  if (postId == null) return '/#blog';
+  if (postId == null) return '/blog';
   return `/blog/${encodeURIComponent(String(postId))}`;
 }
 

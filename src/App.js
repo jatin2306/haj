@@ -4,9 +4,15 @@ import { BrowserRouter, Route, Routes, useOutletContext, useParams } from 'react
 import { HelmetProvider } from 'react-helmet-async';
 import MarketingLayout from './layouts/MarketingLayout';
 import SEO, {
+  blogListingSchema,
+  galleryPageSchema,
+  hajjPackage2027ProductSchema,
+  hotelsListSchema,
   organizationSchema,
   packagesListSchema,
-  breadcrumbSchema,
+  pageSchemas,
+  websiteSchema,
+  DEFAULT_TITLE,
 } from './components/SEO';
 import HeroSection from './components/sections/HeroSection';
 import ServicesSection from './components/sections/ServicesSection';
@@ -40,9 +46,16 @@ function HomePage() {
   const { waHref, telOffice, telMobile } = useOutletContext();
 
   const homeSchema = [
-    organizationSchema(),
+    organizationSchema({ testimonials: TESTIMONIALS }),
+    websiteSchema(),
+    ...pageSchemas({
+      path: '/',
+      name: DEFAULT_TITLE,
+      description:
+        'Trusted Hajj & Umrah packages from Bedfordshire, UK. Hotels near Haram, visa help, guided ziyarah, flights and full support.',
+      breadcrumbs: [{ name: 'Home', url: '/' }],
+    }),
     packagesListSchema([...HAJJ_PACKAGES, ...UMRAH_PACKAGES]),
-    breadcrumbSchema([{ name: 'Home', url: '/' }]),
   ];
 
   return (
@@ -89,16 +102,28 @@ function HomePage() {
 }
 
 function GalleryPage() {
+  const title = 'Umrah Gallery — Photos from Makkah & Madinah';
+  const description =
+    'Browse photos from our Umrah journeys to Makkah and Madinah. See highlights from our guided tours, hotels near the Haram, and pilgrim experiences.';
+
   return (
     <main id="content">
       <SEO
-        title="Umrah Gallery — Photos from Makkah & Madinah"
-        description="Browse photos from our Umrah journeys to Makkah and Madinah. See highlights from our guided tours, hotels near the Haram, and pilgrim experiences."
+        title={title}
+        description={description}
         path="/gallery"
-        schema={breadcrumbSchema([
-          { name: 'Home', url: '/' },
-          { name: 'Gallery', url: '/gallery' },
-        ])}
+        schema={[
+          ...pageSchemas({
+            path: '/gallery',
+            name: title,
+            description,
+            breadcrumbs: [
+              { name: 'Home', url: '/' },
+              { name: 'Gallery', url: '/gallery' },
+            ],
+          }),
+          galleryPageSchema(),
+        ]}
       />
       <GallerySection />
     </main>
@@ -106,16 +131,28 @@ function GalleryPage() {
 }
 
 function HotelsPage() {
+  const title = 'Hotels near Haram — Makkah & Madinah Stays';
+  const description =
+    "Explore our handpicked hotels near the Haram in Makkah and the Prophet's Mosque in Madinah. Comfortable stays for your Hajj and Umrah journey.";
+
   return (
     <main id="content">
       <SEO
-        title="Hotels near Haram — Makkah & Madinah Stays"
-        description="Explore our handpicked hotels near the Haram in Makkah and the Prophet's Mosque in Madinah. Comfortable stays for your Hajj and Umrah journey."
+        title={title}
+        description={description}
         path="/hotels"
-        schema={breadcrumbSchema([
-          { name: 'Home', url: '/' },
-          { name: 'Hotels', url: '/hotels' },
-        ])}
+        schema={[
+          ...pageSchemas({
+            path: '/hotels',
+            name: title,
+            description,
+            breadcrumbs: [
+              { name: 'Home', url: '/' },
+              { name: 'Hotels', url: '/hotels' },
+            ],
+          }),
+          hotelsListSchema(HOTELS),
+        ]}
       />
       <HotelsSection hotels={HOTELS} />
     </main>
