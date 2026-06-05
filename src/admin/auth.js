@@ -1,12 +1,19 @@
 const TOKEN_KEY = 'tourtravels_admin_token';
 
+function getStorage() {
+  if (typeof window === 'undefined') return null;
+  return window.sessionStorage;
+}
+
 export function getAdminToken() {
-  return sessionStorage.getItem(TOKEN_KEY);
+  return getStorage()?.getItem(TOKEN_KEY) ?? null;
 }
 
 export function setAdminToken(token) {
-  if (token) sessionStorage.setItem(TOKEN_KEY, token);
-  else sessionStorage.removeItem(TOKEN_KEY);
+  const storage = getStorage();
+  if (!storage) return;
+  if (token) storage.setItem(TOKEN_KEY, token);
+  else storage.removeItem(TOKEN_KEY);
 }
 
 export function isAdminAuthenticated() {
@@ -14,5 +21,5 @@ export function isAdminAuthenticated() {
 }
 
 export function adminLogout() {
-  sessionStorage.removeItem(TOKEN_KEY);
+  getStorage()?.removeItem(TOKEN_KEY);
 }

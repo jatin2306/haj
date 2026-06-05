@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import '../admin/admin.css';
 import { Layout, Menu, Button, theme, ConfigProvider } from 'antd';
 import { BookOutlined, LogoutOutlined, HomeOutlined } from '@ant-design/icons';
 import { adminLogout } from './auth';

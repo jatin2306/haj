@@ -25,6 +25,14 @@ export function getCardImage(item) {
 
 export function decodeHtmlEntities(value) {
   if (!value || typeof value !== 'string') return '';
+  if (typeof document === 'undefined') {
+    return value
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'");
+  }
   const textarea = document.createElement('textarea');
   let decoded = value;
   for (let i = 0; i < 2; i += 1) {

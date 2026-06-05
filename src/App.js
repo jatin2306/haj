@@ -1,12 +1,11 @@
 import './App.css';
-import './admin/admin.css';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes, useOutletContext, useParams } from 'react-router-dom';
+import { StaticRouter } from 'react-router';
 import { HelmetProvider } from 'react-helmet-async';
 import MarketingLayout from './layouts/MarketingLayout';
 import SEO, {
-  blogListingSchema,
   galleryPageSchema,
-  hajjPackage2027ProductSchema,
   hotelsListSchema,
   organizationSchema,
   packagesListSchema,
@@ -27,12 +26,13 @@ import BlogNotFound from './components/sections/BlogNotFound';
 import ContactSection from './components/sections/ContactSection';
 import GallerySection from './components/sections/GallerySection';
 import TestimonialsSection from './components/sections/TestimonialsSection';
-import AdminLoginPage from './admin/AdminLoginPage';
-import AdminShell from './admin/AdminShell';
-import AdminBlogsPage from './admin/AdminBlogsPage';
 import RequireAdmin from './admin/RequireAdmin';
 import NotFoundPage from './pages/NotFoundPage';
 import HajjPackage2027Page from './pages/HajjPackage2027Page';
+
+const AdminLoginPage = lazy(() => import('./admin/AdminLoginPage'));
+const AdminShell = lazy(() => import('./admin/AdminShell'));
+const AdminBlogsPage = lazy(() => import('./admin/AdminBlogsPage'));
 import {
   CONTACT,
   HAJJ_PACKAGES,
@@ -167,38 +167,44 @@ function BlogPage() {
 
 function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/admin/login" element={<AdminLoginPage />} />
-      <Route
-        path="/admin"
-        element={
-          <RequireAdmin>
-            <AdminShell />
-          </RequireAdmin>
-        }
-      >
-        <Route index element={<AdminBlogsPage />} />
-      </Route>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route
+          path="/admin"
+          element={
+            <RequireAdmin>
+              <AdminShell />
+            </RequireAdmin>
+          }
+        >
+          <Route index element={<AdminBlogsPage />} />
+        </Route>
 
-      <Route path="/*" element={<MarketingLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="gallery" element={<GalleryPage />} />
-        <Route path="hotels" element={<HotelsPage />} />
-        <Route path="hajj-package-2027" element={<HajjPackage2027Page />} />
-        <Route path="blog" element={<BlogListingPage />} />
-        <Route path="blog/:slug" element={<BlogPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+        <Route path="/*" element={<MarketingLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="gallery" element={<GalleryPage />} />
+          <Route path="hotels" element={<HotelsPage />} />
+          <Route path="hajj-package-2027" element={<HajjPackage2027Page />} />
+          <Route path="blog" element={<BlogListingPage />} />
+          <Route path="blog/:slug" element={<BlogPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
-export default function App() {
+export default function App({ location, helmetContext = {} }) {
+  const routes = <AppRoutes />;
+
   return (
-    <HelmetProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+    <HelmetProvider context={helmetContext}>
+      {location != null ? (
+        <StaticRouter location={location}>{routes}</StaticRouter>
+      ) : (
+        <BrowserRouter>{routes}</BrowserRouter>
+      )}
     </HelmetProvider>
   );
 }

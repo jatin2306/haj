@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import '../admin/admin.css';
 import { Button, Card, ConfigProvider, Form, Input, Typography, message } from 'antd';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { loginAdmin } from '../api/blogsAdminApi';

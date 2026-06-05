@@ -1,12 +1,4 @@
-const galleryContext = require.context('../../assets/Umrah photos', false, /\.(png|jpe?g|webp)$/i);
-
-const galleryImages = galleryContext
-  .keys()
-  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
-  .map((key) => ({
-    src: galleryContext(key),
-    alt: `Umrah journey photo ${key.replace('./', '')}`,
-  }));
+import galleryImages from '../../data/galleryImages.json';
 
 function GallerySection() {
   return (
