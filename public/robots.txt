@@ -1,12 +1,15 @@
-# A Way to Makkah — https://awaytomakkah.com
-# https://www.robotstxt.org/robotstxt.html
-
 User-agent: *
+
+Disallow: /*?s=*
+Disallow: /*?search=*
+Disallow: /*?query=*
+Disallow: /search/
+Disallow: /admin/
+Disallow: /config/
+Disallow: /includes/
+Disallow: /tmp/
+Disallow: /private/
+
 Allow: /
 
-# Admin area — not for search indexing
-Disallow: /admin
-Disallow: /admin/
-
-# Sitemap (helps search engines discover public pages)
 Sitemap: https://awaytomakkah.com/sitemap.xml

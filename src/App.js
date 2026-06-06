@@ -29,10 +29,6 @@ import TestimonialsSection from './components/sections/TestimonialsSection';
 import RequireAdmin from './admin/RequireAdmin';
 import NotFoundPage from './pages/NotFoundPage';
 import HajjPackage2027Page from './pages/HajjPackage2027Page';
-
-const AdminLoginPage = lazy(() => import('./admin/AdminLoginPage'));
-const AdminShell = lazy(() => import('./admin/AdminShell'));
-const AdminBlogsPage = lazy(() => import('./admin/AdminBlogsPage'));
 import {
   CONTACT,
   HAJJ_PACKAGES,
@@ -41,6 +37,10 @@ import {
   WHY_CHOOSE,
   TESTIMONIALS,
 } from './data/siteData';
+
+const AdminLoginPage = lazy(() => import('./admin/AdminLoginPage'));
+const AdminShell = lazy(() => import('./admin/AdminShell'));
+const AdminBlogsPage = lazy(() => import('./admin/AdminBlogsPage'));
 
 function HomePage() {
   const { waHref, telOffice, telMobile } = useOutletContext();

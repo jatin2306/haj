@@ -3,6 +3,7 @@ import SEO, { blogPostSchema, pageSchemas } from '../SEO';
 import {
   cleanText,
   formatBlogDate,
+  getBlogPath,
   getCardImage,
   getExcerpt,
   sanitizeBlogHtml,
@@ -21,10 +22,11 @@ function BlogPostPage({ post }) {
   const metaLine = metaParts.join(' · ');
 
   const coverUrl = getCardImage(post);
+  const blogPath = getBlogPath(post);
 
   const postSchema = [
     ...pageSchemas({
-      path: `/blog/${post?.id || ''}`,
+      path: blogPath,
       name: title,
       description: excerpt || `Read "${title}" on A Way to Makkah blog.`,
       pageType: 'WebPage',
@@ -42,7 +44,7 @@ function BlogPostPage({ post }) {
       <SEO
         title={title}
         description={excerpt || `Read "${title}" on A Way to Makkah blog.`}
-        path={`/blog/${post?.id || ''}`}
+        path={blogPath}
         image={coverUrl || undefined}
         type="article"
         schema={postSchema}

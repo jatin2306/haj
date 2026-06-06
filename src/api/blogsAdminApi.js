@@ -71,6 +71,7 @@ export function buildBlogUpsertFormData(payload) {
 
   fd.append('heading', payload.heading ?? '');
   fd.append('description', payload.description ?? '');
+  if (payload.url_slug != null) fd.append('url_slug', String(payload.url_slug).trim());
   if (payload.category != null) fd.append('category', String(payload.category));
   if (payload.author != null) fd.append('author', String(payload.author));
   fd.append('read_time_minutes', String(payload.read_time_minutes ?? 5));

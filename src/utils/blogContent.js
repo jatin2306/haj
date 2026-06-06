@@ -59,6 +59,32 @@ export function blogSlugFromHeading(heading) {
     .replace(/^-+|-+$/g, '');
 }
 
+/** Normalise admin/user slug input for url_slug. */
+export function normalizeUrlSlug(value) {
+  return String(value ?? '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/** Preferred public URL segment: url_slug → legacy slug → heading slug → id. */
+export function getBlogUrlSlug(blog) {
+  const custom = blog?.url_slug ?? blog?.slug;
+  if (custom != null && String(custom).trim()) {
+    const normalized = normalizeUrlSlug(custom);
+    if (normalized) return normalized;
+  }
+
+  const fromHeading = blogSlugFromHeading(blog?.heading);
+  if (fromHeading) return fromHeading;
+
+  const postId = getBlogPostId(blog);
+  if (postId != null) return String(postId);
+
+  return '';
+}
+
 /** Canonical post id from API list/detail payloads (field name varies by backend). */
 export function getBlogPostId(blog) {
   if (blog == null) return null;
@@ -88,11 +114,11 @@ export function sortPublishedBlogsNewestFirst(list) {
   });
 }
 
-/** Public blog article URL — always use the real id so detail fetch hits `GET /blogs/:id` correctly. */
+/** Public blog article URL — uses url_slug when set, otherwise fallbacks. */
 export function getBlogPath(blog) {
-  const postId = getBlogPostId(blog);
-  if (postId == null) return '/blog';
-  return `/blog/${encodeURIComponent(String(postId))}`;
+  const slug = getBlogUrlSlug(blog);
+  if (!slug) return '/blog';
+  return `/blog/${encodeURIComponent(slug)}`;
 }
 
 export function getExcerpt(item) {

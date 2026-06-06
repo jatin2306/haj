@@ -22,7 +22,7 @@ import {
   fetchAdminBlogsList,
   postBlogMultipart,
 } from '../api/blogsAdminApi';
-import { getBlogPostId, getCardImage } from '../utils/blogContent';
+import { getBlogPath, getBlogPostId, getCardImage, normalizeUrlSlug } from '../utils/blogContent';
 import './adminBlogs.css';
 
 const { Title, Text } = Typography;
@@ -58,6 +58,7 @@ export default function AdminBlogsPage() {
   const [saving, setSaving] = useState(false);
 
   const [heading, setHeading] = useState('');
+  const [urlSlug, setUrlSlug] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [author, setAuthor] = useState('Away to Makkah');
@@ -94,6 +95,7 @@ export default function AdminBlogsPage() {
     revokeBlobUrl(coverPhoto);
     galleryPhotos.forEach((p) => revokeBlobUrl(p?.image_url));
     setHeading('');
+    setUrlSlug('');
     setDescription('');
     setCategory('');
     setAuthor('Away to Makkah');
@@ -133,6 +135,7 @@ export default function AdminBlogsPage() {
             }))
         : [initialGallerySlot()];
     setHeading(sanitizeImportedText(blog.heading ?? ''));
+    setUrlSlug(normalizeUrlSlug(blog.url_slug ?? blog.slug ?? ''));
     setDescription(sanitizeImportedText(blog.description ?? ''));
     setCategory(sanitizeImportedText(blog.category ?? ''));
     setAuthor(sanitizeImportedText(blog.author || 'Away to Makkah'));
@@ -250,6 +253,10 @@ export default function AdminBlogsPage() {
     if (!category.trim()) e2.category = 'Category is required';
     if (!description.replace(/<[^>]*>/g, '').trim()) e2.description = 'Description is required';
     if (!coverFile && !coverPhoto?.trim()) e2.cover_photo = 'Cover photo is required';
+    const normalizedSlug = normalizeUrlSlug(urlSlug);
+    if (urlSlug.trim() && !normalizedSlug) {
+      e2.url_slug = 'URL slug can only contain letters, numbers, and hyphens';
+    }
     setErrors(e2);
     if (Object.keys(e2).length > 0) return;
 
@@ -267,6 +274,7 @@ export default function AdminBlogsPage() {
     const payload = {
       id: editId ?? undefined,
       heading: heading.trim(),
+      url_slug: normalizedSlug || '',
       description: sanitizeImportedText(description),
       category: sanitizeImportedText(category),
       author: sanitizeImportedText(author) || 'Away to Makkah',
@@ -333,6 +341,13 @@ export default function AdminBlogsPage() {
       render: (_, row) => getBlogPostId(row) ?? '—',
     },
     { title: 'Heading', dataIndex: 'heading', ellipsis: true },
+    {
+      title: 'URL slug',
+      key: 'url_slug',
+      width: 160,
+      ellipsis: true,
+      render: (_, row) => getBlogPath(row).replace('/blog/', '') || '—',
+    },
     { title: 'Category', dataIndex: 'category', width: 120, ellipsis: true },
     {
       title: 'Active',
@@ -358,7 +373,7 @@ export default function AdminBlogsPage() {
               Edit
             </Button>
             {rowId != null ? (
-              <Link to={`/blog/${rowId}`} style={{ fontSize: 14 }}>
+              <Link to={getBlogPath(row)} style={{ fontSize: 14 }}>
                 View
               </Link>
             ) : (
@@ -433,6 +448,30 @@ export default function AdminBlogsPage() {
                   style={{ marginTop: 6 }}
                 />
                 {errors.heading ? <Text type="danger" className="blog-form-error">{errors.heading}</Text> : null}
+              </div>
+
+              <div className="blog-form-field">
+                <Text strong className="blog-form-label">
+                  URL slug
+                </Text>
+                <Input
+                  value={urlSlug}
+                  onChange={(e) => {
+                    setUrlSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''));
+                    if (errors.url_slug) setErrors((x) => ({ ...x, url_slug: '' }));
+                  }}
+                  onBlur={() => setUrlSlug((current) => normalizeUrlSlug(current))}
+                  placeholder="e.g. umrah-planning-tips"
+                  addonBefore="/blog/"
+                  status={errors.url_slug ? 'error' : undefined}
+                  style={{ marginTop: 6 }}
+                />
+                <Text type="secondary" style={{ display: 'block', marginTop: 6, fontSize: 12 }}>
+                  Custom URL for this post. Leave blank to auto-generate from the heading.
+                </Text>
+                {errors.url_slug ? (
+                  <Text type="danger" className="blog-form-error">{errors.url_slug}</Text>
+                ) : null}
               </div>
 
               <div className="blog-form-field">

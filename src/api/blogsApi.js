@@ -1,4 +1,4 @@
-import { blogSlugFromHeading } from '../utils/blogContent';
+import { blogSlugFromHeading, normalizeUrlSlug } from '../utils/blogContent';
 
 const DEFAULT_API_BASE = 'https://tourntravels-backend.onrender.com/api';
 
@@ -39,7 +39,7 @@ export async function fetchBlogById(id) {
 
 /**
  * Load one published blog for the public `/blog/:slug` route.
- * Accepts numeric id, API slug, or a heading-derived slug (matched against the published list).
+ * Accepts numeric id, url_slug, legacy slug, or a heading-derived slug.
  */
 export async function fetchBlogByRouteRef(ref) {
   const s = String(ref ?? '').trim();
@@ -59,17 +59,18 @@ export async function fetchBlogByRouteRef(ref) {
     throw new Error(msg);
   }
 
+  const want = normalizeUrlSlug(s) || s.toLowerCase();
   const list = await fetchPublishedBlogs();
-  const want = s.toLowerCase();
   for (const blog of list) {
     if (!blog?.id) continue;
-    const slug = blog.slug && String(blog.slug).trim().toLowerCase();
-    if (slug && slug === want) {
+    const urlSlug = blog.url_slug && normalizeUrlSlug(blog.url_slug);
+    if (urlSlug && urlSlug === want) {
       return fetchBlogById(blog.id);
     }
-  }
-  for (const blog of list) {
-    if (!blog?.id) continue;
+    const legacySlug = blog.slug && normalizeUrlSlug(blog.slug);
+    if (legacySlug && legacySlug === want) {
+      return fetchBlogById(blog.id);
+    }
     if (blogSlugFromHeading(blog.heading) === want) {
       return fetchBlogById(blog.id);
     }

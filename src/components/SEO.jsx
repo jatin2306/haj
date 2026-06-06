@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { getBlogUrlSlug } from '../utils/blogContent';
 
 const SITE_NAME = 'A Way to Makkah Umrah Services';
 const SITE_URL = 'https://awaytomakkah.com';
@@ -182,7 +183,7 @@ export function blogPostSchema(post) {
   const title = post?.heading || 'Blog post';
   const datePublished = post?.published_at || new Date().toISOString();
   const author = post?.author || SITE_NAME;
-  const postId = post?.id ?? post?.blog_id ?? post?.blogId ?? '';
+  const slug = getBlogUrlSlug(post);
 
   return {
     '@context': 'https://schema.org',
@@ -205,7 +206,7 @@ export function blogPostSchema(post) {
     image: post?.cover_photo || DEFAULT_IMAGE,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE_URL}/blog/${postId}`,
+      '@id': `${SITE_URL}/blog/${slug}`,
     },
   };
 }

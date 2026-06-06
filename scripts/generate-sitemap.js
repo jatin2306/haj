@@ -68,6 +68,40 @@ function getBlogId(blog) {
   return String(raw);
 }
 
+function normalizeUrlSlug(value) {
+  return String(value ?? '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function blogSlugFromHeading(heading) {
+  const plain = String(heading ?? '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!plain) return '';
+  return plain
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function getBlogUrlSlug(blog) {
+  const custom = blog?.url_slug ?? blog?.slug;
+  if (custom != null && String(custom).trim()) {
+    const normalized = normalizeUrlSlug(custom);
+    if (normalized) return normalized;
+  }
+
+  const fromHeading = blogSlugFromHeading(blog?.heading);
+  if (fromHeading) return fromHeading;
+
+  const id = getBlogId(blog);
+  return id ? String(id) : '';
+}
+
 async function main() {
   const buildDate = new Date().toISOString().slice(0, 10);
   const entries = STATIC_PAGES.map((page) =>
@@ -90,7 +124,7 @@ async function main() {
 
       entries.push(
         buildUrlEntry({
-          path: `/blog/${encodeURIComponent(id)}`,
+          path: `/blog/${encodeURIComponent(getBlogUrlSlug(blog))}`,
           lastmod: toLastmod(blog.updated_at || blog.published_at),
           changefreq: 'monthly',
           priority: '0.6',
