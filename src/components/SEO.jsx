@@ -69,7 +69,7 @@ export function organizationSchema({ testimonials } = {}) {
     '@type': 'TravelAgency',
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/favicon.png`,
+    logo: `${SITE_URL}/logo.png`,
     image: DEFAULT_IMAGE,
     description: DEFAULT_DESCRIPTION,
     telephone: ['+441582616064', '+447838648097'],
@@ -124,7 +124,7 @@ export function websiteSchema() {
       '@type': 'Organization',
       name: SITE_NAME,
       url: SITE_URL,
-      logo: `${SITE_URL}/favicon.png`,
+      logo: `${SITE_URL}/logo.png`,
     },
   };
 }
@@ -200,7 +200,7 @@ export function blogPostSchema(post) {
       name: SITE_NAME,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/favicon.png`,
+        url: `${SITE_URL}/logo.png`,
       },
     },
     image: post?.cover_photo || DEFAULT_IMAGE,
@@ -224,7 +224,7 @@ export function blogListingSchema() {
       '@type': 'Organization',
       name: SITE_NAME,
       url: SITE_URL,
-      logo: `${SITE_URL}/favicon.png`,
+      logo: `${SITE_URL}/logo.png`,
     },
   };
 }

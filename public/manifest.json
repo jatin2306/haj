@@ -3,6 +3,11 @@
   "name": "A Way to Makkah Umrah Services",
   "icons": [
     {
+      "src": "favicon-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
       "src": "favicon.png",
       "type": "image/png",
       "sizes": "192x192"
