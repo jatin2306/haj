@@ -169,6 +169,43 @@ img {
   justify-content: flex-end;
   flex-shrink: 0;
 }
+.navSocialLinks {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.navSocialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.85);
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.navSocialLink:hover {
+  color: var(--text);
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.16);
+}
+.navSocialLink .socialLinkIcon {
+  width: 16px;
+  height: 16px;
+}
+.navMobileSocialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.navMobileSocialLink {
+  width: 42px;
+  height: 42px;
+}
 
 .navMenuToggle {
   display: none;

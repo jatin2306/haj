@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import SocialLinks from '../ui/SocialLinks';
 
 const NAV_LINKS = [
   { to: '/hajj-package-2027', label: 'Hajj Package 2027' },
@@ -66,6 +67,11 @@ function Header() {
           </nav>
 
           <div className="navCtas">
+            <SocialLinks
+              className="navSocialLinks"
+              linkClassName="navSocialLink"
+              showLabels={false}
+            />
             <Link className="btn btnGhost" to="/hotels">
               View hotels
             </Link>
@@ -134,6 +140,11 @@ function Header() {
             ))}
           </div>
           <div className="navMobileCtas">
+            <SocialLinks
+              className="navMobileSocialLinks"
+              linkClassName="navSocialLink navMobileSocialLink"
+              showLabels={false}
+            />
             <Link className="btn btnGhost btnFull" to="/hotels" onClick={closeMenu}>
               View hotels
             </Link>

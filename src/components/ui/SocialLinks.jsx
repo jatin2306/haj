@@ -27,7 +27,7 @@ const SOCIAL_ICONS = {
   instagram: InstagramIcon,
 };
 
-export default function SocialLinks({ className, linkClassName }) {
+export default function SocialLinks({ className, linkClassName, showLabels = true }) {
   return (
     <div className={className}>
       {SOCIAL_LINKS.map(({ id, label, href }) => {
@@ -39,9 +39,10 @@ export default function SocialLinks({ className, linkClassName }) {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={showLabels ? undefined : label}
           >
             {Icon ? <Icon className="socialLinkIcon" /> : null}
-            <span>{label}</span>
+            {showLabels ? <span>{label}</span> : null}
           </a>
         );
       })}
