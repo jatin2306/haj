@@ -15,7 +15,7 @@ export default function MarketingLayout() {
   useEffect(() => {
     if (hash) return;
     scrollToTop({ behavior: 'auto' });
-  }, [pathname, hash]);
+  }, [pathname]);
 
   useEffect(() => {
     if (!hash || hash.length < 2) return;

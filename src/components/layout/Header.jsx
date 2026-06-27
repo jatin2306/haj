@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import SocialLinks from '../ui/SocialLinks';
 import { scrollToTop } from '../../utils/scrollToTop';
@@ -14,17 +14,25 @@ const NAV_LINKS = [
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const { pathname, hash } = useLocation();
   const isBlogSection = pathname === '/blog' || pathname.startsWith('/blog/');
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
-  const handleHomeClick = useCallback(() => {
-    closeMenu();
-    if (pathname === '/' && !hash) {
-      scrollToTop();
-    }
-  }, [closeMenu, pathname, hash]);
+  const handleHomeClick = useCallback(
+    (event) => {
+      closeMenu();
+      if (pathname !== '/') return;
+
+      event.preventDefault();
+      if (hash) {
+        navigate('/', { replace: true });
+      }
+      window.requestAnimationFrame(() => scrollToTop());
+    },
+    [closeMenu, pathname, hash, navigate],
+  );
 
   useEffect(() => {
     if (!menuOpen) return undefined;
