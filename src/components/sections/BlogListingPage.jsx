@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchPublishedBlogs } from '../../api/blogsApi';
+import { useInitialData } from '../../context/InitialDataContext';
 import SEO, { blogListingSchema, pageSchemas } from '../SEO';
 import {
   cleanText,
@@ -13,11 +14,25 @@ import {
 } from '../../utils/blogContent';
 
 function BlogListingPage() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const initialData = useInitialData();
+  const [posts, setPosts] = useState(() => {
+    if (initialData && initialData.posts) {
+      return initialData.posts;
+    }
+    return [];
+  });
+  const [loading, setLoading] = useState(() => {
+    if (initialData && initialData.posts) {
+      return false;
+    }
+    return true;
+  });
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (initialData && initialData.posts) {
+      return;
+    }
     let cancelled = false;
     async function load() {
       setLoading(true);
@@ -39,7 +54,7 @@ function BlogListingPage() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [initialData]);
 
   const title = 'Blog — Hajj & Umrah Travel Guides';
   const description =

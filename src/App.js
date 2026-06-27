@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes, useOutletContext, useParams } from 'react-router-dom';
 import { StaticRouter } from 'react-router';
 import { HelmetProvider } from 'react-helmet-async';
+import { InitialDataProvider } from './context/InitialDataContext';
 import MarketingLayout from './layouts/MarketingLayout';
 import SEO, {
   galleryPageSchema,
@@ -195,16 +196,18 @@ function AppRoutes() {
   );
 }
 
-export default function App({ location, helmetContext = {} }) {
+export default function App({ location, helmetContext = {}, initialData }) {
   const routes = <AppRoutes />;
 
   return (
-    <HelmetProvider context={helmetContext}>
-      {location != null ? (
-        <StaticRouter location={location}>{routes}</StaticRouter>
-      ) : (
-        <BrowserRouter>{routes}</BrowserRouter>
-      )}
-    </HelmetProvider>
+    <InitialDataProvider value={initialData}>
+      <HelmetProvider context={helmetContext}>
+        {location != null ? (
+          <StaticRouter location={location}>{routes}</StaticRouter>
+        ) : (
+          <BrowserRouter>{routes}</BrowserRouter>
+        )}
+      </HelmetProvider>
+    </InitialDataProvider>
   );
 }

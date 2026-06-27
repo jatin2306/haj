@@ -80,6 +80,8 @@ require('@babel/register')({
 });
 
 const App = require('./src/App').default;
+const { fetchPublishedBlogs, fetchBlogByRouteRef } = require('./src/api/blogsApi');
+const { sortPublishedBlogsNewestFirst } = require('./src/utils/blogContent');
 
 function injectHelmet(html, helmetContext) {
   const helmet = helmetContext?.helmet;
@@ -96,7 +98,7 @@ function injectHelmet(html, helmetContext) {
   return html.replace('</head>', `${headTags}</head>`);
 }
 
-function renderApp(url) {
+function renderApp(url, initialData) {
   const pathname = url.split('?')[0];
   if (pathname.startsWith('/admin')) {
     return { appMarkup: '', helmetContext: {} };
@@ -104,7 +106,7 @@ function renderApp(url) {
 
   const helmetContext = {};
   const appMarkup = ReactDOMServer.renderToString(
-    React.createElement(App, { location: url, helmetContext }),
+    React.createElement(App, { location: url, helmetContext, initialData }),
   );
 
   return { appMarkup, helmetContext };
@@ -122,26 +124,62 @@ app.use(
 app.get('*', (req, res) => {
   const htmlFile = path.join(buildPath, 'index.html');
 
-  fs.readFile(htmlFile, 'utf8', (err, template) => {
+  fs.readFile(htmlFile, 'utf8', async (err, template) => {
     if (err) {
       console.error('Failed to read index.html:', err);
       return res.status(500).send('Server Error');
+    }
+
+    let initialData = null;
+    const pathname = req.path;
+    console.log(`[SSR] Incoming request: ${req.method} ${req.url}`);
+
+    try {
+      if (pathname === '/' || pathname === '/blog' || pathname === '/blog/') {
+        console.log('[SSR] Fetching published blogs...');
+        const posts = await fetchPublishedBlogs();
+        console.log(`[SSR] Fetched ${posts ? posts.length : 0} posts`);
+        const sorted = sortPublishedBlogsNewestFirst(posts);
+        initialData = { posts: sorted };
+      } else if (pathname.startsWith('/blog/')) {
+        const slug = pathname.slice(6).replace(/\/$/, ''); // extract slug and strip trailing slash
+        console.log(`[SSR] Fetching blog post details for slug: "${slug}"`);
+        if (slug) {
+          const blog = await fetchBlogByRouteRef(slug);
+          console.log(`[SSR] Fetched blog:`, blog ? blog.heading : 'null');
+          initialData = { blog };
+        }
+      }
+    } catch (fetchError) {
+      console.error('[SSR] Pre-fetch failed:', fetchError);
     }
 
     let appMarkup = '';
     let helmetContext = {};
 
     try {
-      const rendered = renderApp(req.url);
+      console.log(`[SSR] Rendering App for URL: "${req.url}" with initialData keys:`, initialData ? Object.keys(initialData) : 'null');
+      const rendered = renderApp(req.url, initialData);
       appMarkup = rendered.appMarkup;
       helmetContext = rendered.helmetContext;
+      console.log(`[SSR] Render succeeded. Markup length: ${appMarkup.length}`);
     } catch (renderError) {
-      console.error('SSR render failed:', renderError);
+      console.error('[SSR] render failed:', renderError);
     }
 
-    let finalHtml = template.replace(
+    const serializedData = JSON.stringify(initialData || {}).replace(
+      /</g,
+      '\\u003c'
+    );
+
+    // Strip default title and meta description from template to prevent duplicates during SSR.
+    const cleanedTemplate = template
+      .replace(/<title>[\s\S]*?<\/title>/gi, '')
+      .replace(/<meta[^>]*name=["']description["'][^>]*>/gi, '');
+
+    let finalHtml = cleanedTemplate.replace(
       '<div id="root"></div>',
-      `<div id="root">${appMarkup}</div>`,
+      `<script>window.__INITIAL_DATA__ = ${serializedData};</script><div id="root">${appMarkup}</div>`
     );
 
     finalHtml = injectHelmet(finalHtml, helmetContext);

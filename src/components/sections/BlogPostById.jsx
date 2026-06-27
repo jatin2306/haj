@@ -1,19 +1,50 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchBlogByRouteRef } from '../../api/blogsApi';
+import { useInitialData } from '../../context/InitialDataContext';
+import { getBlogUrlSlug, getBlogPostId } from '../../utils/blogContent';
 import BlogPostPage from './BlogPostPage';
 import BlogNotFound from './BlogNotFound';
 
 function BlogPostById({ routeRef }) {
-  const [blog, setBlog] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const initialData = useInitialData();
+
+  const [blog, setBlog] = useState(() => {
+    if (initialData && initialData.blog) {
+      const b = initialData.blog;
+      const refStr = String(routeRef).toLowerCase();
+      const derivedSlug = getBlogUrlSlug(b).toLowerCase();
+      const matchSlug = derivedSlug === refStr;
+      const matchId = String(getBlogPostId(b)) === refStr;
+      if (matchId || matchSlug) {
+        return b;
+      }
+    }
+    return null;
+  });
+
+  const [loading, setLoading] = useState(() => {
+    if (blog) return false;
+    return true;
+  });
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (blog) {
+      const refStr = String(routeRef).toLowerCase();
+      const derivedSlug = getBlogUrlSlug(blog).toLowerCase();
+      const matchSlug = derivedSlug === refStr;
+      const matchId = String(getBlogPostId(blog)) === refStr;
+      if (matchId || matchSlug) {
+        return;
+      }
+    }
+
     let cancelled = false;
     async function load() {
       setLoading(true);
       setError(null);
+      setBlog(null);
       try {
         const data = await fetchBlogByRouteRef(routeRef);
         if (!cancelled) {
@@ -32,6 +63,7 @@ function BlogPostById({ routeRef }) {
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeRef]);
 
   if (loading) {
