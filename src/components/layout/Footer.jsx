@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import SocialLinks from '../ui/SocialLinks';
 
 function Footer({ contact, telOffice }) {
   return (
@@ -36,6 +37,11 @@ function Footer({ contact, telOffice }) {
             <Link to="/#contact">Get in touch</Link>
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <a href={telOffice}>Office {contact.office}</a>
+            <div className="footerTitle footerTitleSpaced">Follow us</div>
+            <SocialLinks
+              className="footerSocialLinks"
+              linkClassName="socialLink footerSocialLink"
+            />
           </div>
           <div className="footerCol">
             <div className="footerTitle">Location</div>

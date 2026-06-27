@@ -6,6 +6,19 @@ export const CONTACT = {
   email: 'info@awaytomakkah.com',
 };
 
+export const SOCIAL_LINKS = [
+  {
+    id: 'facebook',
+    label: 'Facebook',
+    href: 'https://www.facebook.com/profile.php?id=61590093074032',
+  },
+  {
+    id: 'instagram',
+    label: 'Instagram',
+    href: 'https://www.instagram.com/awaytomakkahh',
+  },
+];
+
 export const HAJJ_PACKAGES = [
   {
     id: 'hajj-5-star-shifting-2027',

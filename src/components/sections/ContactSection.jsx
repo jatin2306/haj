@@ -1,4 +1,5 @@
 import EnquiryForm from '../forms/EnquiryForm';
+import SocialLinks from '../ui/SocialLinks';
 
 function ContactSection({ contact, waHref, telOffice, telMobile }) {
   return (
@@ -47,6 +48,13 @@ function ContactSection({ contact, waHref, telOffice, telMobile }) {
               <a className="contactLink" href={`mailto:${contact.email}`}>
                 {contact.email}
               </a>
+            </div>
+            <div className="contactBlock">
+              <div className="contactLabel">Social</div>
+              <SocialLinks
+                className="contactSocialLinks"
+                linkClassName="socialLink contactSocialLink"
+              />
             </div>
           </div>
           <div className="contactAside">

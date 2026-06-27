@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { getBlogUrlSlug } from '../utils/blogContent';
+import { SOCIAL_LINKS } from '../data/siteData';
 
 const SITE_NAME = 'A Way to Makkah Umrah Services';
 const SITE_URL = 'https://awaytomakkah.com';
@@ -84,7 +85,7 @@ export function organizationSchema({ testimonials } = {}) {
       '@type': 'Country',
       name: 'United Kingdom',
     },
-    sameAs: [],
+    sameAs: SOCIAL_LINKS.map(({ href }) => href),
   };
 
   if (Array.isArray(testimonials) && testimonials.length > 0) {
