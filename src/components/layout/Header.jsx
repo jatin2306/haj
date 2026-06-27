@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import SocialLinks from '../ui/SocialLinks';
+import { scrollToTop } from '../../utils/scrollToTop';
 
 const NAV_LINKS = [
   { to: '/hajj-package-2027', label: 'Hajj Package 2027' },
@@ -13,10 +14,17 @@ const NAV_LINKS = [
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const isBlogSection = pathname === '/blog' || pathname.startsWith('/blog/');
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+
+  const handleHomeClick = useCallback(() => {
+    closeMenu();
+    if (pathname === '/' && !hash) {
+      scrollToTop();
+    }
+  }, [closeMenu, pathname, hash]);
 
   useEffect(() => {
     if (!menuOpen) return undefined;
@@ -43,7 +51,7 @@ function Header() {
     <>
       <header className="nav">
         <div className="container navInner">
-          <Link className="brand" to="/" onClick={closeMenu}>
+          <Link className="brand" to="/" onClick={handleHomeClick}>
             <img
               className="brandLogo"
               src={logo}
