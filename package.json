@@ -30,7 +30,7 @@
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "prebuild": "node scripts/generate-sitemap.js && node scripts/generate-gallery-images.js",
     "build": "react-scripts build",
-    "postbuild": "node scripts/generate-gallery-images.js",
+    "postbuild": "node scripts/generate-gallery-images.js && node scripts/prerender.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
