@@ -93,16 +93,21 @@ export function getBlogPostId(blog) {
   return raw;
 }
 
-function publishedAtTime(blog) {
-  const t = blog?.published_at ? new Date(blog.published_at).getTime() : Number.NaN;
-  return Number.isNaN(t) ? null : t;
+function blogSortTime(blog) {
+  for (const key of ['published_at', 'created_at', 'updated_at']) {
+    const raw = blog?.[key];
+    if (!raw) continue;
+    const t = new Date(raw).getTime();
+    if (!Number.isNaN(t)) return t;
+  }
+  return null;
 }
 
-/** Newest published posts first; same order used on home preview and /blog listing. */
+/** Newest posts first; uses published_at, then created_at/updated_at, then id. */
 export function sortPublishedBlogsNewestFirst(list) {
   return [...list].sort((a, b) => {
-    const ta = publishedAtTime(a);
-    const tb = publishedAtTime(b);
+    const ta = blogSortTime(a);
+    const tb = blogSortTime(b);
 
     if (ta != null && tb != null && ta !== tb) return tb - ta;
     if (ta != null && tb == null) return -1;
@@ -141,4 +146,9 @@ export function formatBlogDate(dateStr) {
   } catch {
     return '';
   }
+}
+
+/** Display date for cards: prefer published_at, fall back to created_at. */
+export function formatBlogDisplayDate(blog) {
+  return formatBlogDate(blog?.published_at || blog?.created_at || blog?.updated_at);
 }

@@ -63,7 +63,7 @@ export default function AdminBlogsPage() {
   const [category, setCategory] = useState('');
   const [author, setAuthor] = useState('Away to Makkah');
   const [readTimeMinutes, setReadTimeMinutes] = useState(5);
-  const [publishedAt, setPublishedAt] = useState(null);
+  const [publishedAt, setPublishedAt] = useState(() => dayjs());
   const [isActive, setIsActive] = useState(true);
   const [coverPhoto, setCoverPhoto] = useState('');
   const [coverFile, setCoverFile] = useState(null);
@@ -100,7 +100,7 @@ export default function AdminBlogsPage() {
     setCategory('');
     setAuthor('Away to Makkah');
     setReadTimeMinutes(5);
-    setPublishedAt(null);
+    setPublishedAt(dayjs());
     setIsActive(true);
     setCoverPhoto('');
     setCoverFile(null);
@@ -253,6 +253,7 @@ export default function AdminBlogsPage() {
     if (!category.trim()) e2.category = 'Category is required';
     if (!description.replace(/<[^>]*>/g, '').trim()) e2.description = 'Description is required';
     if (!coverFile && !coverPhoto?.trim()) e2.cover_photo = 'Cover photo is required';
+    if (!publishedAt) e2.published_at = 'Publish date is required for public listing';
     const normalizedSlug = normalizeUrlSlug(urlSlug);
     if (urlSlug.trim() && !normalizedSlug) {
       e2.url_slug = 'URL slug can only contain letters, numbers, and hyphens';
@@ -280,8 +281,8 @@ export default function AdminBlogsPage() {
       author: sanitizeImportedText(author) || 'Away to Makkah',
       read_time_minutes: Math.max(1, parseInt(readTimeMinutes, 10) || 5),
       is_active: isActive,
-      published_at: publishedAt ? publishedAt.toISOString() : undefined,
-      clear_published_at: Boolean(editId && !publishedAt),
+      published_at: (publishedAt || dayjs()).toISOString(),
+      clear_published_at: false,
       blog_photos,
     };
 
@@ -554,7 +555,7 @@ export default function AdminBlogsPage() {
                 </div>
                 <div className="blog-form-field blog-form-field-lg">
                   <Text strong className="blog-form-label">
-                    Publish date
+                    Publish date *
                   </Text>
                   <DatePicker
                     value={publishedAt}
@@ -562,6 +563,11 @@ export default function AdminBlogsPage() {
                     allowClear
                     style={{ marginTop: 6, display: 'block', width: '100%', minWidth: 220 }}
                   />
+                  {!publishedAt ? (
+                    <Text type="danger" style={{ display: 'block', marginTop: 4 }}>
+                      Required for the post to appear on the public site
+                    </Text>
+                  ) : null}
                 </div>
                 <div className="blog-form-field blog-form-switch">
                   <Text strong className="blog-form-label">

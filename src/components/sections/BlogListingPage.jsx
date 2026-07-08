@@ -5,7 +5,7 @@ import { useInitialData } from '../../context/InitialDataContext';
 import SEO, { blogListingSchema, pageSchemas } from '../SEO';
 import {
   cleanText,
-  formatBlogDate,
+  formatBlogDisplayDate,
   getBlogPath,
   getBlogPostId,
   getCardImage,
@@ -30,12 +30,11 @@ function BlogListingPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (initialData && initialData.posts) {
-      return;
-    }
     let cancelled = false;
+    const hasInitial = Boolean(initialData && initialData.posts);
     async function load() {
-      setLoading(true);
+      // Always refetch so new admin posts appear even if prerender/SSR data is stale.
+      if (!hasInitial) setLoading(true);
       setError(null);
       try {
         const list = await fetchPublishedBlogs();
@@ -43,8 +42,11 @@ function BlogListingPage() {
         if (!cancelled) setPosts(sorted);
       } catch (e) {
         if (!cancelled) {
-          setError(e?.message || 'Could not load articles');
-          setPosts([]);
+          // Keep prerendered posts if the live API fails.
+          if (!hasInitial) {
+            setError(e?.message || 'Could not load articles');
+            setPosts([]);
+          }
         }
       } finally {
         if (!cancelled) setLoading(false);
@@ -118,7 +120,7 @@ function BlogListingPage() {
                 const title = cleanText(blog?.heading) || 'Blog post';
                 const excerpt = getExcerpt(blog);
                 const category = cleanText(blog?.category);
-                const dateStr = formatBlogDate(blog?.published_at);
+                const dateStr = formatBlogDisplayDate(blog);
                 const readTime =
                   blog?.read_time_minutes != null ? `${blog.read_time_minutes} min read` : '';
                 if (!id) return null;
