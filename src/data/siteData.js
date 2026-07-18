@@ -261,7 +261,7 @@ export const UMRAH_PACKAGES = [
     id: 'easter-group-2027',
     title: 'Easter Holidays Umrah Group Package 2027',
     tier: 'Group',
-    dates: '22 Mar    June – 01 April 2027',
+    dates: '22 Mar June – 01 April 2027',
     madinah: '5 nights in 4* Shaza Regency Madinah',
     makkah: '5 nights in 5* Hilton Convention Hotel Makkah',
     includes: [
