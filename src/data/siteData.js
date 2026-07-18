@@ -19,6 +19,61 @@ export const SOCIAL_LINKS = [
   },
 ];
 
+export const HAJJ_PACKAGES = [
+  {
+    id: 'hajj-deluxe-2027',
+    title: 'Deluxe Hajj Package 2027',
+    tier: 'Deluxe',
+    dates: 'Hajj 2027',
+    madinah: 'Emaar Royal Hotel Madinah (or similar)',
+    makkah: 'Anjum Hotel Makkah + Suites Almaqam (or similar)',
+    includes: [
+      'Return flights',
+      'Hotels in Makkah & Madinah',
+      'Complete Mashaeer support',
+      'All ground transport',
+      'Full board',
+    ],
+    prices: {
+      quad: 8749,
+      triple: 9349,
+      twin: 9949,
+    },
+    deposit: 0,
+    breakfast: false,
+    mealNote: 'Full Board Included',
+    kids: null,
+    flightsNote: null,
+    earlyBird: null,
+  },
+  {
+    id: 'hajj-luxury-2027',
+    title: 'Luxury Hajj Package 2027',
+    tier: 'Luxury',
+    dates: 'Hajj 2027',
+    madinah: 'Worth Peninsula Madinah (or similar)',
+    makkah: 'Hyatt Regency Jabal Omar + Suites Almaqam (or similar)',
+    includes: [
+      'Return flights',
+      'Hotels in Makkah & Madinah',
+      'Complete Mashaeer support',
+      'All ground transport',
+      'Full board',
+    ],
+    prices: {
+      quad: 9849,
+      triple: 10449,
+      twin: 11449,
+    },
+    deposit: 0,
+    breakfast: false,
+    mealNote: 'Full Board Included',
+    kids: null,
+    flightsNote: null,
+    earlyBird: null,
+  },
+];
+
 export const UMRAH_PACKAGES = [
   {
     id: '4-star-august-2026',
@@ -33,11 +88,7 @@ export const UMRAH_PACKAGES = [
       'ETA visa (British passport)',
       'Full ground transport',
     ],
-    prices: {
-      quad: 695,
-      triple: 795,
-      twin: 895,
-    },
+    prices: { quad: 695, triple: 795, twin: 895 },
     deposit: 250,
     breakfast: true,
     mealNote: null,
@@ -46,6 +97,7 @@ export const UMRAH_PACKAGES = [
       'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
+
   {
     id: '5-star-august-2026',
     title: '5 Star August Umrah Package',
@@ -59,19 +111,16 @@ export const UMRAH_PACKAGES = [
       'ETA visa (British passport)',
       'Full ground transport',
     ],
-    prices: {
-      quad: 799,
-      triple: 899,
-      twin: 899,
-    },
+    prices: { quad: 799, triple: 899, twin: 899 },
     deposit: 250,
     breakfast: true,
     mealNote: null,
-    kids: 'Kids under 6 yrs stay free with parents, incl. Breakfast',
+    kids: 'Kids under 6 yrs stay free with parents, incl. breakfast',
     flightsNote:
       'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
+
   {
     id: '4-star-september-2026',
     title: '4 Star September Umrah Package 2026',
@@ -85,11 +134,7 @@ export const UMRAH_PACKAGES = [
       'ETA visa (British passport)',
       'Full ground transport',
     ],
-    prices: {
-      quad: 655,
-      triple: 755,
-      twin: 855,
-    },
+    prices: { quad: 655, triple: 755, twin: 855 },
     deposit: 250,
     breakfast: true,
     mealNote: null,
@@ -98,6 +143,7 @@ export const UMRAH_PACKAGES = [
       'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
+
   {
     id: '5-star-september-2026',
     title: '5 Star September Umrah Package 2026',
@@ -111,11 +157,7 @@ export const UMRAH_PACKAGES = [
       'ETA visa (British passport)',
       'Full ground transport',
     ],
-    prices: {
-      quad: 795,
-      triple: 895,
-      twin: 995,
-    },
+    prices: { quad: 795, triple: 895, twin: 995 },
     deposit: 250,
     breakfast: true,
     mealNote: null,
@@ -124,6 +166,7 @@ export const UMRAH_PACKAGES = [
       'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
+
   {
     id: 'october-group-2026',
     title: 'October Holidays Umrah Group Package',
@@ -138,13 +181,9 @@ export const UMRAH_PACKAGES = [
       'Guided ziyarah tours in Madinah',
       'ETA visa (British passport)',
       'Full ground transport',
-      'Fully Qualified scholar',
+      'Fully Qualified Scholar',
     ],
-    prices: {
-      quad: 1395,
-      triple: 1495,
-      twin: 1695,
-    },
+    prices: { quad: 1395, triple: 1495, twin: 1695 },
     deposit: 250,
     breakfast: true,
     mealNote: null,
@@ -152,6 +191,7 @@ export const UMRAH_PACKAGES = [
     flightsNote: null,
     earlyBird: null,
   },
+
   {
     id: 'december-group-2026',
     title: 'December Holidays Umrah Group Package',
@@ -160,18 +200,14 @@ export const UMRAH_PACKAGES = [
     madinah: '5 nights in 4* Shaza Regency Madinah',
     makkah: '5 nights in 5* Hilton Convention Makkah',
     includes: [
-      'Flights with Royal Jordan',
+      'Flights with Royal Jordanian',
       'Guided ziyarah tours in Makkah',
       'Guided ziyarah tours in Madinah',
       'ETA visa (British passport)',
       'Full ground transport',
-      'Fully Qualified scholar',
+      'Fully Qualified Scholar',
     ],
-    prices: {
-      quad: 1700,
-      triple: 1800,
-      twin: 1900,
-    },
+    prices: { quad: 1700, triple: 1800, twin: 1900 },
     deposit: 250,
     breakfast: true,
     mealNote: null,
@@ -179,6 +215,7 @@ export const UMRAH_PACKAGES = [
     flightsNote: null,
     earlyBird: null,
   },
+
   {
     id: '4-star-january-2027',
     title: '4 Star January Umrah Package 2027',
@@ -192,11 +229,7 @@ export const UMRAH_PACKAGES = [
       'ETA visa (British passport)',
       'Full ground transport',
     ],
-    prices: {
-      quad: 695,
-      triple: 795,
-      twin: 895,
-    },
+    prices: { quad: 695, triple: 795, twin: 895 },
     deposit: 250,
     breakfast: true,
     mealNote: null,
@@ -205,6 +238,7 @@ export const UMRAH_PACKAGES = [
       'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
+
   {
     id: '5-star-january-2027',
     title: '5 Star January Umrah Package 2027',
@@ -218,11 +252,7 @@ export const UMRAH_PACKAGES = [
       'E-waiver visa (British passport)',
       'Full ground transport',
     ],
-    prices: {
-      quad: 795,
-      triple: 895,
-      twin: 995,
-    },
+    prices: { quad: 795, triple: 895, twin: 995 },
     deposit: 250,
     breakfast: true,
     mealNote: null,
@@ -231,6 +261,7 @@ export const UMRAH_PACKAGES = [
       'Flights are not included with this package. Please call our agents for flights.',
     earlyBird: null,
   },
+
   {
     id: 'ramadhan-hotel-2027',
     title: 'Ramadhan 2027 Umrah Hotel Package',
@@ -245,11 +276,7 @@ export const UMRAH_PACKAGES = [
       'ETA visa (British passport)',
       'Full ground transport',
     ],
-    prices: {
-      quad: 755,
-      triple: 899,
-      twin: 999,
-    },
+    prices: { quad: 755, triple: 899, twin: 999 },
     deposit: 250,
     breakfast: false,
     mealNote: 'Sohoor included',
@@ -257,26 +284,23 @@ export const UMRAH_PACKAGES = [
     flightsNote: null,
     earlyBird: null,
   },
+
   {
     id: 'easter-group-2027',
     title: 'Easter Holidays Umrah Group Package 2027',
     tier: 'Group',
-    dates: '22 Mar June – 01 April 2027',
+    dates: '22 March – 01 April 2027',
     madinah: '5 nights in 4* Shaza Regency Madinah',
     makkah: '5 nights in 5* Hilton Convention Hotel Makkah',
     includes: [
-      'Flights with Qatar Airways 35 kg luggage allowance',
+      'Flights with Qatar Airways (35 kg luggage allowance)',
       'Guided ziyarah tours in Makkah',
       'Guided ziyarah tours in Madinah',
       'ETA visa (British passport)',
       'Full ground transport',
-      'Fully Qualified scholar',
+      'Fully Qualified Scholar',
     ],
-    prices: {
-      quad: 1395,
-      triple: 1495,
-      twin: 1695,
-    },
+    prices: { quad: 1395, triple: 1495, twin: 1695 },
     deposit: 250,
     breakfast: true,
     mealNote: null,
@@ -285,8 +309,6 @@ export const UMRAH_PACKAGES = [
     earlyBird: null,
   },
 ];
-
-
 
 
 /** @deprecated Prefer HAJJ_PACKAGES and UMRAH_PACKAGES; kept as the full catalogue. */
@@ -354,51 +376,5 @@ export const TESTIMONIALS = [
     quote:
       'We had a great Umrah experience with Away to Makkah Umrah Services. From the start, they delivered an informative seminar that helped us feel prepared and confident for the journey ahead.\n\nEverything was taken care of—from transportation and accommodation to arranging tours and providing all the essentials—allowing us to focus fully on our worship.\n\nThe ground teams in Makkah and Madinah were especially wonderful—helpful, kind, and always ready to support us with a smile.\n\nMay Allah (SWT) reward them abundantly and continue to bless their efforts. Ameen.',
     rating: 5,
-  },
-];
-export const HAJJ_PACKAGES = [
-  {
-    id: 'hajj-5-star-shifting-2027',
-    title: 'Hajj Packages 2027 - 5 Star Shifting',
-    tier: '5★',
-    dates: 'Hajj 2027',
-    madinah: 'Full package details to follow',
-    makkah: 'Shifting package (accommodation details to follow)',
-    includes: [
-      'Quad room sharing',
-      'Bangladeshi passport required',
-      'Last day for registration: October 2026',
-    ],
-    prices: {
-      quad: 8449,
-    },
-    deposit: 1000,
-    breakfast: false,
-    mealNote: null,
-    kids: 'Full package details to follow',
-    flightsNote: null,
-    earlyBird: null,
-  },
-  {
-    id: 'hajj-deluxe-non-shifting-2027',
-    title: 'Hajj Packages 2027 - Deluxe Non-Shifting',
-    tier: 'Deluxe',
-    dates: 'Hajj 2027',
-    madinah: 'Full package details to follow',
-    makkah: 'Non-shifting package (accommodation details to follow)',
-    includes: [
-      'Quad room sharing',
-      'Bangladeshi passport required',
-      'Last day for registration: October 2026',
-    ],
-    prices: {
-      quad: 6549,
-    },
-    deposit: 1000,
-    breakfast: false,
-    mealNote: null,
-    kids: 'Full package details to follow',
-    flightsNote: null,
-    earlyBird: null,
   },
 ];
