@@ -135,7 +135,7 @@ function PackagesSection({
                   <div>£{p.deposit.toFixed(2)} deposit with payment plan</div>
                   {p.mealNote ? <div>{p.mealNote}</div> : null}
                   {p.breakfast ? <div>Breakfast included</div> : null}
-                  <div>{p.kids}</div>
+                  {p.kids ? <div>{p.kids}</div> : null}
                   {p.earlyBird ? <div className="earlyBird">{p.earlyBird}</div> : null}
                   {p.flightsNote ? (
                     <div className="packageNote">{renderFlightsNote(p.flightsNote)}</div>

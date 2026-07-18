@@ -75,10 +75,10 @@ function HomePage() {
         ariaLabel="Hajj 2027 packages"
         intro={
           <>
-            Prices shown are per person for quad room sharing. £
-            {HAJJ_PACKAGES[0].deposit.toFixed(2)} deposit with payment plan. Full itinerary and flights
-            are confirmed when you book. A Bangladeshi passport is required — see each package for
-            registration deadlines.
+            Prices shown are per person for room sharing. £
+            {HAJJ_PACKAGES[0].deposit.toFixed(2)} deposit with payment plan. Return flights,
+            Mashaeer support, and full ground transport included. Hotel shifting applies during
+            Hajj — see each package for hotel details.
           </>
         }
         packages={HAJJ_PACKAGES}

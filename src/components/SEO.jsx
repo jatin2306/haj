@@ -304,13 +304,13 @@ export function hajjPackage2027ProductSchema() {
     '@type': 'Product',
     name: 'Hajj Package 2027 — A Way to Makkah',
     description:
-      'Hajj 1448/2027 packages from UK. 5-Star Shifting from £8,449 and Deluxe Non-Shifting from £6,549 per person quad sharing. Bangladeshi passport required.',
+      'Hajj 1448/2027 packages from UK. Deluxe from £8,749 and Luxury from £9,849 per person quad sharing. Return flights and Mashaeer support included.',
     brand: { '@type': 'Organization', name: SITE_NAME },
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'GBP',
-      lowPrice: 6549,
-      highPrice: 8449,
+      lowPrice: 8749,
+      highPrice: 11449,
       offerCount: 2,
       availability: 'https://schema.org/InStock',
     },

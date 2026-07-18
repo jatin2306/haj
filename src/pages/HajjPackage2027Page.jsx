@@ -1,9 +1,12 @@
 import SEO, { hajjPackage2027ProductSchema, pageSchemas } from '../components/SEO';
+import { HAJJ_PACKAGES } from '../data/siteData';
 
 export default function HajjPackage2027Page() {
-  const title = 'Hajj Package 2027 — 5-Star & Deluxe from UK';
+  const title = 'Hajj Package 2027 — Deluxe & Luxury from UK';
   const description =
-    'Book your Hajj 1448/2027 package. 5-Star Shifting from £8,449, Deluxe Non-Shifting from £6,549 per person. Bangladeshi passport required. Register by Oct 2026.';
+    'Book your Hajj 1448/2027 package. Deluxe from £8,749 and Luxury from £9,849 per person quad sharing. Return flights, Mashaeer support, and expert guidance included.';
+
+  const [deluxe, luxury] = HAJJ_PACKAGES;
 
   return (
     <main id="content" className="hajjPage">
@@ -28,44 +31,63 @@ export default function HajjPackage2027Page() {
         <div className="container">
           <div className="hajjPoster">
             <div className="hajjPosterTop">
-              <p className="hajjOverline">Once in a lifetime</p>
-              <h1 className="hajjMainTitle">Hajj Experience</h1>
-              <p className="hajjSubTitle">Hajj 1448/2027</p>
+              <p className="hajjOverline">Hajj 1448 / 2027</p>
+              <h1 className="hajjMainTitle">Hajj Packages</h1>
+              <p className="hajjSubTitle">A Way to Makkah — Luton&apos;s Premier Hajj Service Provider</p>
             </div>
 
             <div className="hajjPackagesTitle">Our Packages</div>
 
             <div className="hajjPackagesGrid">
               <article className="hajjPriceCard">
-                <div className="hajjPriceCardHead">Shifting 5★</div>
+                <div className="hajjPriceCardHead">{deluxe.title}</div>
+                <p className="hajjPriceCardTagline">Balanced &amp; value-focused</p>
                 <div className="hajjPriceRow">
-                  <span>Quad Basis</span>
-                  <strong>£8449*</strong>
+                  <span>Quad sharing</span>
+                  <strong>£{deluxe.prices.quad.toLocaleString()}</strong>
+                </div>
+                <div className="hajjPriceRow">
+                  <span>Triple sharing</span>
+                  <strong>£{deluxe.prices.triple.toLocaleString()}</strong>
+                </div>
+                <div className="hajjPriceRow">
+                  <span>Double sharing</span>
+                  <strong>£{deluxe.prices.twin.toLocaleString()}</strong>
                 </div>
               </article>
 
               <article className="hajjNoticeCard">
-                <p>শুধুমাত্র বাংলাদেশী পাসপোর্টধারী হাজ্জের জন্য আবেদন করতে পারবেন।</p>
-                <p>আবেদনের শেষ সময় অক্টোবর মাস পর্যন্ত</p>
+                <p>Special assistance &amp; guidance for Bangladesh passport holders.</p>
+                <p>Prices per person. Qurbani not included.</p>
+                <p>Hotel shifting applies during the Hajj journey.</p>
               </article>
 
               <article className="hajjPriceCard">
-                <div className="hajjPriceCardHead">Non-Shifting</div>
+                <div className="hajjPriceCardHead">{luxury.title}</div>
+                <p className="hajjPriceCardTagline">Premium comfort · Prime location</p>
                 <div className="hajjPriceRow">
-                  <span>Deluxe</span>
-                  <strong>£6549*</strong>
+                  <span>Quad sharing</span>
+                  <strong>£{luxury.prices.quad.toLocaleString()}</strong>
+                </div>
+                <div className="hajjPriceRow">
+                  <span>Triple sharing</span>
+                  <strong>£{luxury.prices.triple.toLocaleString()}</strong>
+                </div>
+                <div className="hajjPriceRow">
+                  <span>Double sharing</span>
+                  <strong>£{luxury.prices.twin.toLocaleString()}</strong>
                 </div>
               </article>
             </div>
 
             <div className="hajjDeadline">
-              <span>Last date of registration</span>
-              <strong>Mid-October 2026</strong>
+              <span>Contact us for full itinerary &amp; availability</span>
+              <strong>awaytomakkah.com</strong>
             </div>
 
             <div className="hajjPageFooter">
               <a href="tel:+447538935033" className="hajjCallLink">
-                Call us: 07538 935 033
+                Call / WhatsApp: 07538 935 033
               </a>
               <span>A Way to Makkah Umrah Services</span>
             </div>
