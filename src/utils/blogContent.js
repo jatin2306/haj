@@ -25,21 +25,26 @@ export function getCardImage(item) {
 
 export function decodeHtmlEntities(value) {
   if (!value || typeof value !== 'string') return '';
-  if (typeof document === 'undefined') {
-    return value
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&quot;/g, '"')
-      .replace(/&#39;/g, "'");
-  }
-  const textarea = document.createElement('textarea');
-  let decoded = value;
-  for (let i = 0; i < 2; i += 1) {
-    textarea.innerHTML = decoded;
-    decoded = textarea.value;
-  }
-  return decoded;
+  return value
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&mdash;/g, '—')
+    .replace(/&ndash;/g, '–')
+    .replace(/&ldquo;/g, '“')
+    .replace(/&rdquo;/g, '”')
+    .replace(/&lsquo;/g, '‘')
+    .replace(/&rsquo;/g, '’')
+    .replace(/&middot;/g, '·')
+    .replace(/&#x27;/g, "'")
+    .replace(/&#x2F;/g, '/')
+    .replace(/&#96;/g, '`')
+    .replace(/&#x3D;/g, '=')
+    .replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(Number(dec)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
 }
 
 export function cleanText(value) {
